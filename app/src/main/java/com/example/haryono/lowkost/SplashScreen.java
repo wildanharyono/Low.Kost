@@ -22,6 +22,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(homeIntent);  //memanggil method start
                 finish(); //memanggil method finish
             }
-        },SPLASH_TIME_OUT); //tag penutup splash
+        },SPLASH_TIME_OUT); //tag penutup untuk splash
     }
 }

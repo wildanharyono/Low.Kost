@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.haryono.lowkost.SplashScreen">
 
-    //untuk splash screen
+    //untuk layout splash screen
 
     <ImageView
         android:id="@+id/splashscreen"
