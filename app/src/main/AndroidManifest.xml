@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".SplashScreen" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".DisplayActivity"></activity>
     </application>
 
 </manifest>
