@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "261752867994",
+    "firebase_url": "https://lowkostbeta.firebaseio.com",
+    "project_id": "lowkostbeta",
+    "storage_bucket": "lowkostbeta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261752867994:android:9066afe915e86c5c",
+        "android_client_info": {
+          "package_name": "id.web.rery.sampelproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261752867994-bsid54p6rkprjligajtq7i82pi5h8ig3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnOuvZ725Wn_JPwqYa0WtjR6pUduTkuKw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261752867994:android:1328f417ee169e34",
+        "android_client_info": {
+          "package_name": "com.example.haryono.lowkost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261752867994-fblfe31p119g62556dqus6jnvls88cg5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.haryono.lowkost",
+            "certificate_hash": "43609f1168997a2e2d2ee2ad5e071c8e287aa11b"
+          }
+        },
+        {
+          "client_id": "261752867994-bsid54p6rkprjligajtq7i82pi5h8ig3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnOuvZ725Wn_JPwqYa0WtjR6pUduTkuKw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261752867994-bsid54p6rkprjligajtq7i82pi5h8ig3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
