@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewSignin.setOnClickListener(this);
 
     }
+
     public void registerUser(){
         String email=editTextEmail.getText().toString().trim();
         String password=editTextPassword.getText().toString().trim();
