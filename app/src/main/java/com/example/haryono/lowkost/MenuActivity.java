@@ -1,9 +1,11 @@
 package com.example.haryono.lowkost;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -83,6 +85,16 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
+
+        listViewArtists.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Kost kost = kostList.get(i);
+                showUpdateDialog(kost.getArtistId(), kost.getArtistName());
+                return true;
+            }
+        });
+
 
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
@@ -172,5 +184,56 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             //if the value is not given displaying a toast
             Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void showUpdateDialog(final String artistId, String artistName){
+        AlertDialog.Builder dialogBulder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        final  View dialogView= inflater.inflate(R.layout.update_dialog, null);
+
+        dialogBulder.setView(dialogView);
+
+
+        final EditText editTextName = (EditText)dialogView.findViewById(R.id.editTextName);
+        final Button buttonUpdate = (Button)dialogView.findViewById(R.id.buttonUpdate);
+        final Spinner spinnerGenres = (Spinner)dialogView.findViewById(R.id.spinnerGenres);
+
+        dialogBulder.setTitle("Updateing Artist"+ artistName);
+
+        final AlertDialog alertDialog = dialogBulder.create();
+        alertDialog.show();
+
+        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            String name = editTextName.getText().toString().trim();
+            String genre = spinnerGenres.getSelectedItem().toString();
+
+            if(TextUtils.isEmpty(name)){
+                editTextName.setError("isi namanya");
+                return;
+                }
+
+                updateKost(artistId, name, genre);
+
+                alertDialog.dismiss();
+            }
+        });
+
+
+    }
+
+    private boolean updateKost(String id, String name, String genre){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("kost").child(id);
+
+        Kost kost = new Kost(id, name, genre);
+
+        databaseReference.setValue(kost);
+
+        Toast.makeText(this, "berhasil", Toast.LENGTH_LONG).show();
+
+        return true;
     }
 }
