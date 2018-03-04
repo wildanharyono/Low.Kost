@@ -5,16 +5,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,7 +38,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     DatabaseReference databaseKost;
 
-
+    ListView listViewArtists;
+    List<Kost>kostList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +50,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         editTextName = (EditText)findViewById(R.id.editTextName);
         buttonAdd = (Button)findViewById(R.id.buttonAddArtist);
         sipinnerGenres = (Spinner)findViewById(R.id.spinnerGenres);
+
+
+        listViewArtists= (ListView)findViewById(R.id.listViewArtists);
+
+        kostList = new ArrayList<>();
 
         buttonAdd.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -86,6 +100,33 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             //starting login activity
             startActivity(new Intent(this, LoginActivity.class));
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        databaseKost.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                kostList.clear();
+
+                for (DataSnapshot artistSapshot : dataSnapshot.getChildren()){
+                    Kost kost = artistSapshot.getValue(Kost.class);
+
+                    kostList.add(kost);
+                }
+
+                KostList adapter = new KostList(MenuActivity.this, kostList);
+                listViewArtists.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void addArtist(){
