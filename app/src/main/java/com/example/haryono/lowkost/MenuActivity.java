@@ -3,12 +3,18 @@ package com.example.haryono.lowkost;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -18,12 +24,30 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     //view objects
     private TextView textViewUserEmail;
     private Button buttonLogout;
+    Button buttonAdd;
+    Spinner sipinnerGenres;
+    EditText editTextName;
+
+    DatabaseReference databaseKost;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        databaseKost = FirebaseDatabase.getInstance().getReference("kost");
+
+        editTextName = (EditText)findViewById(R.id.editTextName);
+        buttonAdd = (Button)findViewById(R.id.buttonAddArtist);
+        sipinnerGenres = (Spinner)findViewById(R.id.spinnerGenres);
+
+        buttonAdd.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                addArtist();
+            }
+        });
 
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
@@ -61,6 +85,30 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             finish();
             //starting login activity
             startActivity(new Intent(this, LoginActivity.class));
+        }
+    }
+
+    public void addArtist(){
+        String name = editTextName.getText().toString().trim();
+        String genre = sipinnerGenres.getSelectedItem().toString();
+        if (!TextUtils.isEmpty(name)) {
+            String id = databaseKost.push().getKey();
+
+            //creating an Artist Object
+            Kost artist = new Kost(id, name, genre);
+
+            //Saving the Artist
+            databaseKost.child(id).setValue(artist);
+
+            //setting edittext to blank again
+            editTextName.setText("");
+
+            //displaying a success toast
+            Toast.makeText(this, "Artist added", Toast.LENGTH_LONG).show();
+
+        } else {
+            //if the value is not given displaying a toast
+            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
         }
     }
 }
