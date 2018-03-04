@@ -38,4 +38,12 @@
         android:text="Update"
         tools:layout_editor_absoluteX="46dp"
         tools:layout_editor_absoluteY="127dp" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="127dp" />
 </LinearLayout>

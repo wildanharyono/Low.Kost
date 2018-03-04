@@ -199,6 +199,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         final EditText editTextName = (EditText)dialogView.findViewById(R.id.editTextName);
         final Button buttonUpdate = (Button)dialogView.findViewById(R.id.buttonUpdate);
         final Spinner spinnerGenres = (Spinner)dialogView.findViewById(R.id.spinnerGenres);
+        final Button buttonDelete = (Button)dialogView.findViewById(R.id.buttonDelete);
 
         dialogBulder.setTitle("Updateing Artist"+ artistName);
 
@@ -222,7 +223,24 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteKost(artistId);
+            }
+        });
 
+
+    }
+
+    private void deleteKost(String artistId) {
+        DatabaseReference drKost = FirebaseDatabase.getInstance().getReference("kost").child(artistId);
+        DatabaseReference drKostan = FirebaseDatabase.getInstance().getReference("kostan").child(artistId);
+
+        drKost.removeValue();
+        drKostan.removeValue();
+
+        Toast.makeText(this, "berhasil di dellete", Toast.LENGTH_LONG).show();
     }
 
     private boolean updateKost(String id, String name, String genre){
