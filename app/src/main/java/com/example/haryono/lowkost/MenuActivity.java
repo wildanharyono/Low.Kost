@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,8 @@ import java.util.List;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String ARTIST_NAME="artistname";
+    public static final String ARTIST_ID="artistid";
     //firebase auth object
     private FirebaseAuth firebaseAuth;
 
@@ -60,6 +63,24 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view){
                 addArtist();
+            }
+        });
+
+        listViewArtists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //getting the selected artist
+                Kost Kost = kostList.get(i);
+
+                //creating an intent
+                Intent intent = new Intent(getApplicationContext(), AddKostanActivity.class);
+
+                //putting artist name and id to intent
+                intent.putExtra(ARTIST_ID, Kost.getArtistId());
+                intent.putExtra(ARTIST_NAME, Kost.getArtistName());
+
+                //starting the activity with intent
+                startActivity(intent);
             }
         });
 
