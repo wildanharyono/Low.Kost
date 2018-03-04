@@ -12,8 +12,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddKostanActivity extends AppCompatActivity {
 
@@ -25,6 +31,8 @@ public class AddKostanActivity extends AppCompatActivity {
     ListView listViewKostan;
 
     DatabaseReference databaseKostan;
+
+    List <Kostan> kostans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,7 @@ public class AddKostanActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+        kostans = new ArrayList<>();
         String id =intent.getStringExtra(MenuActivity.ARTIST_ID);
         String name =intent.getStringExtra(MenuActivity.ARTIST_NAME);
 
@@ -54,6 +63,31 @@ public class AddKostanActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveKostan();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        databaseKostan.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                kostans.clear();
+
+                for(DataSnapshot kostanSnapshot : dataSnapshot.getChildren()){
+                    Kostan kostan = kostanSnapshot.getValue(Kostan.class);
+                    kostans.add(kostan);
+                }
+
+                KostanList kostanListAdapter = new KostanList(AddKostanActivity.this, kostans);
+                listViewKostan.setAdapter(kostanListAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }
