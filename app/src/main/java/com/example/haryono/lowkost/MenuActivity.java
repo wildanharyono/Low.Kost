@@ -61,6 +61,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         kostList = new ArrayList<>();
 
+        //listener untun button add
         buttonAdd.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
