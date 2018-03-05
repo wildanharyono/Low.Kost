@@ -31,10 +31,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     public static final String ARTIST_NAME="artistname";
     public static final String ARTIST_ID="artistid";
-    //firebase auth object
+    //objek autentikasi firebase
     private FirebaseAuth firebaseAuth;
 
-    //view objects
+    //melihat objek
     private TextView textViewUserEmail;
     private Button buttonLogout;
     Button buttonAdd;
@@ -201,7 +201,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         final Spinner spinnerGenres = (Spinner)dialogView.findViewById(R.id.spinnerGenres);
         final Button buttonDelete = (Button)dialogView.findViewById(R.id.buttonDelete);
 
-        dialogBulder.setTitle("Updateing Artist"+ artistName);
+        dialogBulder.setTitle("Updating Artist"+ artistName);
 
         final AlertDialog alertDialog = dialogBulder.create();
         alertDialog.show();
