@@ -18,6 +18,7 @@ import java.util.List;
 
 public class KostList extends ArrayAdapter<Kost> {
     private Activity context;
+    //get array data dari class Kost
     List<Kost> kostList;
 
     public KostList(Activity context, List<Kost> artists) {
