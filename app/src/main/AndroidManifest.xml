@@ -22,7 +22,6 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".MenuActivity" />
         <!--<activity android:name=".CreateDataKos" />-->
-        <activity android:name=".DisplayActivity"></activity>
     </application>
 
 </manifest>
