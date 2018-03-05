@@ -69,6 +69,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        //listener untuk listViewArtists
         listViewArtists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
