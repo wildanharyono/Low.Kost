@@ -15,6 +15,7 @@ import java.util.List;
 
 public class KostanList extends ArrayAdapter<Kostan> {
     private Activity context;
+    //get array data dari class Kostan
     List<Kostan> kostanList;
 
     public KostanList(Activity context, List<Kostan> kostan) {
