@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    //listener ketika button register di klik akan mendaftarkan user
     public void onClick(View view){
         if (view == buttonRegister){
             registerUser();
