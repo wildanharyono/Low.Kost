@@ -104,7 +104,7 @@ public class AddKostanActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Tersimpan", Toast.LENGTH_LONG).show();
         }else {
-            Toast.makeText(this, "gaboleh ksong", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "harap isi terlebih dahulu", Toast.LENGTH_LONG).show();
         }
     }
 }
