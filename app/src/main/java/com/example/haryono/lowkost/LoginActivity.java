@@ -19,8 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-
-    //defining views
+    //define view nya
     private Button buttonSignIn;
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -63,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         textViewSignup.setOnClickListener(this);
     }
 
-    //method for user login
+    //method untuk login
     private void userLogin(){
         String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
@@ -86,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog.setMessage("Registering Please Wait...");
         progressDialog.show();
 
-        //logging in the user
+        //untuk login usernya
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -103,6 +102,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    //listener ketika tombol di click
     @Override
     public void onClick(View view) {
         if(view == buttonSignIn){
