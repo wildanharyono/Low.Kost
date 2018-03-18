@@ -1,5 +1,6 @@
 package com.example.haryono.lowkost;
 
+
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -39,11 +39,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonLogout;
     Button buttonAdd;
     Spinner sipinnerGenres;
-    EditText editTextName;
+    EditText editTextName, editTextLokasi, editTextFasilitas, editTextHarga ;
 
     DatabaseReference databaseKost;
 
-    ListView listViewArtists;
+    ListView listViewKost;
     List<Kost>kostList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,22 +53,25 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         databaseKost = FirebaseDatabase.getInstance().getReference("kost");
 
         editTextName = (EditText)findViewById(R.id.editTextName);
-        buttonAdd = (Button)findViewById(R.id.buttonAddArtist);
+        editTextLokasi = (EditText)findViewById(R.id.editTextLokasi);
+        editTextFasilitas = (EditText)findViewById(R.id.editTextFasilitas);
+        editTextHarga = (EditText)findViewById(R.id.editTextHarga);
+        buttonAdd = (Button)findViewById(R.id.buttonAdd);
         sipinnerGenres = (Spinner)findViewById(R.id.spinnerGenres);
 
 
-        listViewArtists= (ListView)findViewById(R.id.listViewArtists);
+        listViewKost = (ListView)findViewById(R.id.listViewKost);
 
         kostList = new ArrayList<>();
 
         buttonAdd.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                addArtist();
+                addKost();
             }
         });
 
-        listViewArtists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewKost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //getting the selected artist
@@ -78,19 +81,19 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(getApplicationContext(), AddKostanActivity.class);
 
                 //putting artist name and id to intent
-                intent.putExtra(ARTIST_ID, Kost.getArtistId());
-                intent.putExtra(ARTIST_NAME, Kost.getArtistName());
+                intent.putExtra(ARTIST_ID, Kost.getKostId());
+                intent.putExtra(ARTIST_NAME, Kost.getKostName());
 
                 //starting the activity with intent
                 startActivity(intent);
             }
         });
 
-        listViewArtists.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewKost.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Kost kost = kostList.get(i);
-                showUpdateDialog(kost.getArtistId(), kost.getArtistName());
+                showUpdateDialog(kost.getKostId(), kost.getKostName(), kost.getKostGenre(), kost.getKostLokasi(), kost.getKostFasilitas(), kost.getKostHarga());
                 return true;
             }
         });
@@ -152,7 +155,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 KostList adapter = new KostList(MenuActivity.this, kostList);
-                listViewArtists.setAdapter(adapter);
+                listViewKost.setAdapter(adapter);
             }
 
             @Override
@@ -162,23 +165,27 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    public void addArtist(){
+    public void addKost(){
         String name = editTextName.getText().toString().trim();
+        String lokasi = editTextLokasi.getText().toString().trim();
+        String fasilitas = editTextFasilitas.getText().toString().trim();
+        String harganya = editTextHarga.getText().toString().trim();
+        int harga = Integer.parseInt(harganya.trim());
         String genre = sipinnerGenres.getSelectedItem().toString();
         if (!TextUtils.isEmpty(name)) {
             String id = databaseKost.push().getKey();
 
             //creating an Artist Object
-            Kost artist = new Kost(id, name, genre);
+            Kost kost = new Kost(id, name, genre, lokasi, fasilitas, harga);
 
             //Saving the Artist
-            databaseKost.child(id).setValue(artist);
+            databaseKost.child(id).setValue(kost);
 
             //setting edittext to blank again
             editTextName.setText("");
 
             //displaying a success toast
-            Toast.makeText(this, "Artist added", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Kost added", Toast.LENGTH_LONG).show();
 
         } else {
             //if the value is not given displaying a toast
@@ -186,22 +193,25 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void showUpdateDialog(final String artistId, String artistName){
+    private void showUpdateDialog(final String kostId, String kostName, String kostGenre, String kostLokasi, String kostFasilitas, int kostHarga) {
         AlertDialog.Builder dialogBulder = new AlertDialog.Builder(this);
 
         LayoutInflater inflater = getLayoutInflater();
 
-        final  View dialogView= inflater.inflate(R.layout.update_dialog, null);
+        final View dialogView = inflater.inflate(R.layout.update_dialog, null);
 
         dialogBulder.setView(dialogView);
 
 
-        final EditText editTextName = (EditText)dialogView.findViewById(R.id.editTextName);
-        final Button buttonUpdate = (Button)dialogView.findViewById(R.id.buttonUpdate);
-        final Spinner spinnerGenres = (Spinner)dialogView.findViewById(R.id.spinnerGenres);
-        final Button buttonDelete = (Button)dialogView.findViewById(R.id.buttonDelete);
+        final EditText editTextName = (EditText) dialogView.findViewById(R.id.editTextName);
+        final EditText editTextLokasi = (EditText) dialogView.findViewById(R.id.editTextLokasi);
+        final EditText editTextFasilitas = (EditText) dialogView.findViewById(R.id.editTextFasilitas);
+        final EditText editTextHarga = (EditText) dialogView.findViewById(R.id.editTextHarga);
+        final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdate);
+        final Spinner spinnerGenres = (Spinner) dialogView.findViewById(R.id.spinnerGenres);
+        final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDelete);
 
-        dialogBulder.setTitle("Updateing Artist"+ artistName);
+        dialogBulder.setTitle("Updateing Kost" + kostName);
 
         final AlertDialog alertDialog = dialogBulder.create();
         alertDialog.show();
@@ -209,15 +219,20 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            String name = editTextName.getText().toString().trim();
-            String genre = spinnerGenres.getSelectedItem().toString();
+                String name = editTextName.getText().toString().trim();
+                String genre = spinnerGenres.getSelectedItem().toString();
+                String lokasi = editTextLokasi.getText().toString().trim();
+                String fasilitas = editTextFasilitas.getText().toString().trim();
+                String harganya = editTextHarga.getText().toString().trim();
+                int harga = Integer.parseInt(harganya.trim());
 
-            if(TextUtils.isEmpty(name)){
-                editTextName.setError("isi namanya");
-                return;
+
+                if (TextUtils.isEmpty(name)) {
+                    editTextName.setError("isi namanya");
+                    return;
                 }
 
-                updateKost(artistId, name, genre);
+                updateKost(kostId, name, genre, lokasi, fasilitas, harga);
 
                 alertDialog.dismiss();
             }
@@ -226,7 +241,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteKost(artistId);
+                deleteKost(kostId);
             }
         });
 
@@ -243,10 +258,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this, "berhasil di dellete", Toast.LENGTH_LONG).show();
     }
 
-    private boolean updateKost(String id, String name, String genre){
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("kost").child(id);
+    private boolean updateKost(String kostId, String kostName, String kostGenre, String kostLokasi, String kostFasilitas, int kostHarga){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("kost").child(kostId);
 
-        Kost kost = new Kost(id, name, genre);
+        Kost kost = new Kost(kostId, kostName, kostGenre, kostLokasi, kostFasilitas,kostHarga );
 
         databaseReference.setValue(kost);
 

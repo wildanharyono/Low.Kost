@@ -2,10 +2,9 @@
     <string name="app_name">Low.Kost</string>
 
     <array name="gendres">
-        <item>Rock</item>
-        <item>Sufi</item>
-        <item>Pop</item>
-        <item>Folk</item>
+        <item>Pria</item>
+        <item>Wanita</item>
+        <item>Campur</item>
     </array>
 
 </resources>

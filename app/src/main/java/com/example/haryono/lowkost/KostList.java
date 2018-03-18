@@ -20,10 +20,10 @@ public class KostList extends ArrayAdapter<Kost> {
     private Activity context;
     List<Kost> kostList;
 
-    public KostList(Activity context, List<Kost> artists) {
-        super(context, R.layout.list_layout, artists);
+    public KostList(Activity context, List<Kost> kost) {
+        super(context, R.layout.list_layout, kost);
         this.context = context;
-        this.kostList = artists;
+        this.kostList = kost;
     }
 
 
@@ -35,9 +35,9 @@ public class KostList extends ArrayAdapter<Kost> {
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
         TextView textViewGenre = (TextView) listViewItem.findViewById(R.id.textViewGenre);
 
-        Kost artist = kostList.get(position);
-        textViewName.setText(artist.getArtistName());
-        textViewGenre.setText(artist.getArtistGenre());
+        Kost kost = kostList.get(position);
+        textViewName.setText(kost.getKostName());
+        textViewGenre.setText(kost.getKostGenre());
 
         return listViewItem;
     }
