@@ -31,6 +31,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     public static final String ARTIST_NAME="artistname";
     public static final String ARTIST_ID="artistid";
+    public static final String ARTIST_GENRE="artistgenre";
+    public static final String ARTIST_LOKASI="artistlokasi";
+    public static final String ARTIST_FASILITAS="artistfasilitas";
+    public static final String ARTIST_HARGA="artistharga";
     //firebase auth object
     private FirebaseAuth firebaseAuth;
 
@@ -40,6 +44,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonAdd;
     Spinner sipinnerGenres;
     EditText editTextName, editTextLokasi, editTextFasilitas, editTextHarga ;
+
 
     DatabaseReference databaseKost;
 
@@ -78,11 +83,15 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 Kost Kost = kostList.get(i);
 
                 //creating an intent
-                Intent intent = new Intent(getApplicationContext(), AddKostanActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DetailEditActivity.class);
 
                 //putting artist name and id to intent
                 intent.putExtra(ARTIST_ID, Kost.getKostId());
                 intent.putExtra(ARTIST_NAME, Kost.getKostName());
+                intent.putExtra(ARTIST_GENRE, Kost.getKostGenre());
+                intent.putExtra(ARTIST_LOKASI, Kost.getKostLokasi());
+                intent.putExtra(ARTIST_FASILITAS, Kost.getKostFasilitas());
+                intent.putExtra(ARTIST_HARGA, String.valueOf(Kost.getKostHarga()));
 
                 //starting the activity with intent
                 startActivity(intent);
