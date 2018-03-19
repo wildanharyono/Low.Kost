@@ -23,7 +23,8 @@
         <activity android:name=".AddKostanActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".CatalogActivity" />
-        <activity android:name=".DetailEditActivity"></activity>
+        <activity android:name=".DetailEditActivity" />
+        <activity android:name=".DetailCatalogActivity"></activity>
     </application>
 
 </manifest>

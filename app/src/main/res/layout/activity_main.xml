@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="100dp"
     tools:context="com.example.haryono.lowkost.MainActivity">
 
     <LinearLayout
@@ -11,6 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="User Signup"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal" />
 
         <EditText
             android:id="@+id/editTextEmail"
