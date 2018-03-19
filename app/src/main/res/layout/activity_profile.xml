@@ -23,7 +23,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/logout"
+        android:background="logout"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
 

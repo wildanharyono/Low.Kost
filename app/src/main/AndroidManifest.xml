@@ -21,8 +21,10 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MenuActivity" />
-        <!--<activity android:name=".CreateDataKos" />-->
-        <activity android:name=".DisplayActivity"></activity>
+        <!-- <activity android:name=".CreateDataKos" /> -->
+        <activity android:name=".DisplayActivity" />
+        <activity android:name=".Update" />
+        <activity android:name=".Main2cobaActivity"></activity>
     </application>
 
 </manifest>
