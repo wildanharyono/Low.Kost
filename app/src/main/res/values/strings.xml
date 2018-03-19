@@ -1,11 +1,9 @@
 <resources>
     <string name="app_name">Low.Kost</string>
 
-    <array name="gendres">
-        <item>Rock</item>
-        <item>Sufi</item>
-        <item>Pop</item>
-        <item>Folk</item>
+    <array name="Gender">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
     </array>
 
 </resources>
