@@ -21,4 +21,21 @@
         android:layout_weight="1"
         android:onClick="onSearch"
         android:text="Cari" />
+
+    <Button
+        android:id="@+id/bt_viewdata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onSearch2"
+        android:text="Cari Data" />
+
+    <Button
+        android:id="@+id/search_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search Bar"
+        android:onClick="onSearch3"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"/>
 </LinearLayout>

@@ -24,7 +24,9 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".CatalogActivity" />
         <activity android:name=".DetailEditActivity" />
-        <activity android:name=".DetailCatalogActivity"></activity>
+        <activity android:name=".DetailCatalogActivity" />
+        <activity android:name=".Catalog2Activity" />
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>

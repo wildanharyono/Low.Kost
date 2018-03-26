@@ -1,10 +1,12 @@
 package com.example.haryono.lowkost;
 
+import java.io.Serializable;
+
 /**
  * Created by haryono on 3/4/2018.
  */
 
-public class Kost {
+public class Kost implements Serializable {
     private String kostId;
     private String kostName;
     private String kostGenre;
@@ -47,5 +49,29 @@ public class Kost {
 
     public int getKostHarga() {
         return kostHarga;
+    }
+
+    public void setKostId(String kostId) {
+        this.kostId = kostId;
+    }
+
+    public void setKostName(String kostName) {
+        this.kostName = kostName;
+    }
+
+    public void setKostGenre(String kostGenre) {
+        this.kostGenre = kostGenre;
+    }
+
+    public void setKostLokasi(String kostLokasi) {
+        this.kostLokasi = kostLokasi;
+    }
+
+    public void setKostFasilitas(String kostFasilitas) {
+        this.kostFasilitas = kostFasilitas;
+    }
+
+    public void setKostHarga(int kostHarga) {
+        this.kostHarga = kostHarga;
     }
 }

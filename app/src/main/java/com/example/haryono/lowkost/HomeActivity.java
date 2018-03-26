@@ -21,4 +21,13 @@ public class HomeActivity extends AppCompatActivity {
         Intent send = new Intent(this, CatalogActivity.class);
         startActivity(send);
     }
+    public void onSearch2(View view){
+        Intent send = new Intent(this, Catalog2Activity.class);
+        startActivity(send);
+    }
+    public void onSearch3(View view){
+        Intent send = new Intent(this, SearchActivity.class);
+        startActivity(send);
+    }
+
 }
