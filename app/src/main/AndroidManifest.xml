@@ -21,8 +21,16 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MenuActivity" />
-        <!--<activity android:name=".CreateDataKos" />-->
-        <activity android:name=".DisplayActivity"></activity>
+        <!-- <activity android:name=".CreateDataKos" /> -->
+        <activity android:name=".DisplayActivity" />
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
