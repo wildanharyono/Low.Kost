@@ -25,6 +25,20 @@
             android:text="Input Data Kost"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Logout" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
         <EditText
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
@@ -73,13 +87,6 @@
             android:id="@+id/listViewKost"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logout"
-            android:id="@+id/buttonLogout"
-            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 </RelativeLayout>

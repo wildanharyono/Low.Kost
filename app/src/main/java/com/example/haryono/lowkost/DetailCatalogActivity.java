@@ -20,12 +20,6 @@ public class DetailCatalogActivity extends AppCompatActivity {
     TextView textViewKostHarga;
     Button buttonAddKostan;
 
-    ListView listViewKostan;
-
-    DatabaseReference databaseKostan;
-
-    List<Kostan> kostans;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +35,6 @@ public class DetailCatalogActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-
         String id =intent.getStringExtra(MenuActivity.ARTIST_ID);
         String name =intent.getStringExtra(MenuActivity.ARTIST_NAME);
         String genre =intent.getStringExtra(MenuActivity.ARTIST_GENRE);
