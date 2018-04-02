@@ -1,4 +1,4 @@
-package com.example.haryono.lowkost;
+package com.example.haryono.lowkost.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.example.haryono.lowkost.R;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.haryono.lowkost;
+package com.example.haryono.lowkost.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import com.example.haryono.lowkost.Adapter.SearchAdapter;
+import com.example.haryono.lowkost.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
