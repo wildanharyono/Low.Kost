@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);  //Binding ButterKnife pada activity
-        setTitle("Popotoan");
+        setTitle("Lowkost");
 
         //Mengatur tab dan fragment pada tab menggunakan fragmentstatepageritemadapter dari library SmartTabLayout
         FragmentStatePagerItemAdapter adapter = new FragmentStatePagerItemAdapter(
