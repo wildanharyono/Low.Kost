@@ -64,19 +64,15 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         editTextHarga = (EditText)findViewById(R.id.editTextHarga);
         buttonAdd = (Button)findViewById(R.id.buttonAdd);
         sipinnerGenres = (Spinner)findViewById(R.id.spinnerGenres);
-
-
         listViewKost = (ListView)findViewById(R.id.listViewKost);
 
         kostList = new ArrayList<>();
-
         buttonAdd.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 addKost();
             }
         });
-
         listViewKost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -107,11 +103,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             }
         });
-
-
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
-
         //if the user is not logged in
         //that means current user will return null
         if(firebaseAuth.getCurrentUser() == null){
@@ -120,17 +113,13 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             //starting login activity
             startActivity(new Intent(this, LoginActivity.class));
         }
-
         //getting current user
         FirebaseUser user = firebaseAuth.getCurrentUser();
-
         //initializing views
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
-
         //displaying logged in user name
         textViewUserEmail.setText("Welcome "+user.getEmail());
-
         //adding listener to button
         buttonLogout.setOnClickListener(this);
     }
@@ -205,11 +194,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showUpdateDialog(final String kostId, String kostName, String kostGenre, String kostLokasi, String kostFasilitas, int kostHarga) {
         AlertDialog.Builder dialogBulder = new AlertDialog.Builder(this);
-
         LayoutInflater inflater = getLayoutInflater();
-
         final View dialogView = inflater.inflate(R.layout.update_dialog, null);
-
         dialogBulder.setView(dialogView);
 
 
@@ -247,15 +233,12 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 alertDialog.dismiss();
             }
         });
-
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 deleteKost(kostId);
             }
         });
-
-
     }
 
     private void deleteKost(String artistId) {

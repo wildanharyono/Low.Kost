@@ -25,19 +25,11 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="62dp" />
 
-    <Spinner
-        android:id="@+id/spinnerGenres"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/gendres" />
-
-    <EditText
-        android:id="@+id/editTextLokasi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Lokasi"
-        android:inputType="textPersonName" />
+    <!--<Spinner-->
+        <!--android:id="@+id/spinnerGenres"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:entries="@array/gendres" />-->
 
     <EditText
         android:id="@+id/editTextFasilitas"
@@ -48,12 +40,22 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editTextHarga"
+        android:id="@+id/editTextLokasi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Harga"
+        android:hint="Lokasi"
         android:inputType="textPersonName" />
+
+   <!---->
+
+    <!--<EditText-->
+        <!--android:id="@+id/editTextHarga"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:ems="10"-->
+        <!--android:hint="Harga"-->
+        <!--android:inputType="textPersonName" />-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

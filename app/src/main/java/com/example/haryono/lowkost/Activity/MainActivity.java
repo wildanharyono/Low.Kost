@@ -8,14 +8,24 @@ package com.example.haryono.lowkost.Activity;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseUser;
+import com.example.haryono.lowkost.Model.PhotoModel;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
@@ -28,7 +38,12 @@ import com.example.haryono.lowkost.R;
 import com.example.haryono.lowkost.Config.Constant;
 import com.example.haryono.lowkost.Fragment.PhotoFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+    List<PhotoModel> kostList;
+    RecyclerView cardViewKost;
 
     //Dekalarasi View
     @BindView(R.id.btnAdd) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
@@ -40,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);  //Binding ButterKnife pada activity
         setTitle("Popotoan");
+
+        kostList = new ArrayList<>();
+        cardViewKost = (RecyclerView) findViewById(R.id.rvFoto);
 
         //Mengatur tab dan fragment pada tab menggunakan fragmentstatepageritemadapter dari library SmartTabLayout
         FragmentStatePagerItemAdapter adapter = new FragmentStatePagerItemAdapter(
@@ -58,6 +76,25 @@ public class MainActivity extends AppCompatActivity {
             viewPager.setAdapter(adapter); //masukkan fragment pada adapter viewpager
             viewPagerTab.setViewPager(viewPager); //mengatur tab pada viewpager
         }
+
+//          cardViewKost.setOnClickListener((View.OnClickListener) this);
+//          cardViewKost.setOnLongClickListener(new View.OnLongClickListener() {
+//              @Override
+//              public boolean onLongClick(View view) {
+//                  PhotoModel kost = kostList.get(1);
+//                  showUpdateDialog(kost.getKey(), kost.getImage_url(), kost.title, kost.desc, kost.getLokasi(), kost.name, kost.email);
+//                  return true;
+//              }
+
+//              @Override
+//            public boolean onLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                PhotoModel kost = kostList.get(i);
+//                showUpdateDialog(kost.getKey(), kost.getImage_url(), kost.title, kost.desc, kost.getLokasi(), kost.name, kost.email);
+//                return true;
+//            }
+//        });
+
+
     }
 
     //method untuk handling tombol add
@@ -85,5 +122,71 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void showUpdateDialog(final String key, final String image_url, String title, String desc, String lokasi, String name, final String email) {
+        AlertDialog.Builder dialogBulder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.update_dialog, null);
+        dialogBulder.setView(dialogView);
+
+        final EditText editTextName = (EditText) dialogView.findViewById(R.id.editTextName);
+        final EditText editTextFasilitas = (EditText) dialogView.findViewById(R.id.editTextFasilitas);
+        final EditText editTextLokasi = (EditText) dialogView.findViewById(R.id.editTextLokasi);
+        final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdate);
+        final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDelete);
+
+        dialogBulder.setTitle("Updateing Kost" + title);
+
+        final AlertDialog alertDialog = dialogBulder.create();
+        alertDialog.show();
+
+        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = editTextName.getText().toString().trim();
+                String title = editTextName.getText().toString().trim();
+                String lokasi = editTextLokasi.getText().toString().trim();
+                String desc = editTextFasilitas.getText().toString().trim();
+
+                if (TextUtils.isEmpty(title)) {
+                    editTextName.setError("isi namanya");
+                    return;
+                }
+
+                updateKost(key,  image_url, title, desc, lokasi, name, email );
+
+                alertDialog.dismiss();
+            }
+        });
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteKost(key);
+            }
+        });
+    }
+
+    private void deleteKost(String artistId) {
+        DatabaseReference drKost = FirebaseDatabase.getInstance().getReference("photo").child(artistId);
+        DatabaseReference drKostan = FirebaseDatabase.getInstance().getReference("commentList").child(artistId);
+
+        drKost.removeValue();
+        drKostan.removeValue();
+
+        Toast.makeText(this, "berhasil di dellete", Toast.LENGTH_LONG).show();
+    }
+
+    private boolean updateKost(String key, String image_url, String title, String desc, String lokasi, String name, String email){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("photo").child(key);
+
+        PhotoModel kost = new PhotoModel(key, image_url, title, desc, lokasi,name, email );
+
+        databaseReference.setValue(kost);
+
+        Toast.makeText(this, "berhasil", Toast.LENGTH_LONG).show();
+
+        return true;
     }
 }
