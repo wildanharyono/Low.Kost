@@ -1,6 +1,7 @@
 package com.example.haryono.lowkost.Adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,18 +10,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.haryono.lowkost.R;
 
 import java.util.ArrayList;
 
 /**
- * Created by haryono on 3/26/2018.
+ * Created by Dushyant Mainwal on 29-Oct-17.
  */
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
     Context context;
     ArrayList<String> fullNameList;
-    //    ArrayList<String> userNameList;
+    ArrayList<String> userNameList;
     ArrayList<String> profilePicList;
 
     class SearchViewHolder extends RecyclerView.ViewHolder {
@@ -29,17 +31,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
         public SearchViewHolder(View itemView) {
             super(itemView);
-//            profileImage = (ImageView) itemView.findViewById(R.id.profileImage);
+            profileImage = (ImageView) itemView.findViewById(R.id.profileImage);
             full_name = (TextView) itemView.findViewById(R.id.full_name);
-//            user_name = (TextView) itemView.findViewById(R.id.user_name);
+            user_name = (TextView) itemView.findViewById(R.id.user_name);
         }
     }
 
-    public SearchAdapter(Context context, ArrayList<String> fullNameList) {
+    public SearchAdapter(Context context, ArrayList<String> fullNameList, ArrayList<String> userNameList, ArrayList<String> profilePicList) {
         this.context = context;
         this.fullNameList = fullNameList;
-//        this.userNameList = userNameList;
-//        this.profilePicList = profilePicList;
+        this.userNameList = userNameList;
+        this.profilePicList = profilePicList;
     }
 
     @Override
@@ -51,7 +53,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         holder.full_name.setText(fullNameList.get(position));
-//        holder.user_name.setText(userNameList.get(position));
+        holder.user_name.setText(userNameList.get(position));
 //        Glide.with(context).load(profilePicList.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
 
         holder.full_name.setOnClickListener(new View.OnClickListener() {

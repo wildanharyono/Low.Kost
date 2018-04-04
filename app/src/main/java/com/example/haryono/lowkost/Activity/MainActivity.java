@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);  //Binding ButterKnife pada activity
-        setTitle("Popotoan");
+        setTitle("LowKost");
 
         kostList = new ArrayList<>();
         cardViewKost = (RecyclerView) findViewById(R.id.rvFoto);

@@ -27,7 +27,7 @@ public class SearchActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
     ArrayList<String> fullNameList;
-    //    ArrayList<String> userNameList;
+    ArrayList<String> userNameList;
     ArrayList<String> profilePicList;
     SearchAdapter searchAdapter;
 
@@ -50,7 +50,7 @@ public class SearchActivity extends AppCompatActivity {
         * Create a array list for each node you want to use
         * */
         fullNameList = new ArrayList<>();
-//        userNameList = new ArrayList<>();
+        userNameList = new ArrayList<>();
         profilePicList = new ArrayList<>();
 
         search_edit_text.addTextChangedListener(new TextWatcher() {
@@ -71,7 +71,7 @@ public class SearchActivity extends AppCompatActivity {
                     * Clear the list when editText is empty
                     * */
                     fullNameList.clear();
-//                    userNameList.clear();
+                    userNameList.clear();
                     profilePicList.clear();
                     recyclerView.removeAllViews();
                 }
@@ -80,14 +80,14 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void setAdapter(final String searchedString) {
-        databaseReference.child("kost").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("photo").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 /*
                 * Clear the list for every new search
                 * */
                 fullNameList.clear();
-//                userNameList.clear();
+                userNameList.clear();
                 profilePicList.clear();
                 recyclerView.removeAllViews();
 
@@ -98,20 +98,20 @@ public class SearchActivity extends AppCompatActivity {
                 * */
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
-                    String full_name = snapshot.child("kostName").getValue(String.class);
-//                    String user_name = snapshot.child("user_name").getValue(String.class);
-//                    String profile_pic = snapshot.child("profile_pic").getValue(String.class);
+                    String full_name = snapshot.child("name").getValue(String.class);
+                    String user_name = snapshot.child("lokasi").getValue(String.class);
+                    String profile_pic = snapshot.child("image_url").getValue(String.class);
 
                     if (full_name.toLowerCase().contains(searchedString.toLowerCase())) {
                         fullNameList.add(full_name);
-//                        userNameList.add(user_name);
-//                        profilePicList.add(profile_pic);
+                        userNameList.add(user_name);
+                        profilePicList.add(profile_pic);
                         counter++;
-//                    } else if (user_name.toLowerCase().contains(searchedString.toLowerCase())) {
-//                        fullNameList.add(full_name);
-////                        userNameList.add(user_name);
-//                        profilePicList.add(profile_pic);
-//                        counter++;
+                    } else if (user_name.toLowerCase().contains(searchedString.toLowerCase())) {
+                        fullNameList.add(full_name);
+                        userNameList.add(user_name);
+                        profilePicList.add(profile_pic);
+                        counter++;
                     }
 
                     /*
@@ -121,7 +121,7 @@ public class SearchActivity extends AppCompatActivity {
                         break;
                 }
 
-                searchAdapter = new SearchAdapter(SearchActivity.this, fullNameList);
+                searchAdapter = new SearchAdapter(SearchActivity.this, fullNameList, userNameList, profilePicList);
                 recyclerView.setAdapter(searchAdapter);
             }
 
