@@ -45,9 +45,9 @@ public class AddPhotoActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.tvLokasi) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             TextInputEditText tvLokasi;
     @BindView(R.id.imgPhoto) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
-    ImageView imgPhoto;
+            ImageView imgPhoto;
     @BindView(R.id.btnChoose) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
-    Button btnChoose;
+            Button btnChoose;
     private StorageReference refPhotoProfile;
     private Uri photoUrl;
     private ProgressDialog pbDialog;
@@ -83,21 +83,21 @@ public class AddPhotoActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.btnPost:
                 //validasi kosong
-                if(tvTitle.getText().toString().isEmpty()) {
+                if (tvTitle.getText().toString().isEmpty()) {
                     tvTitle.setError("Required");
                     return;
                 }
                 //validasi kosong
-                if(tvPost.getText().toString().isEmpty()) {
+                if (tvPost.getText().toString().isEmpty()) {
                     tvPost.setError("Required");
                     return;
                 }
-                if(tvLokasi.getText().toString().isEmpty()) {
+                if (tvLokasi.getText().toString().isEmpty()) {
                     tvLokasi.setError("Required");
                     return;
                 }
                 //validasi gambar sudah dipilih
-                if(!isPicChange) {
+                if (!isPicChange) {
                     Toast.makeText(this, "Harap pilih gambar!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -159,7 +159,7 @@ public class AddPhotoActivity extends AppCompatActivity implements View.OnClickL
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) { // jika ada data dipilih
             Image image = ImagePicker.getFirstImageOrNull(data); //ambil first image
             File imgFile = new File(image.getPath()); // dapatkan lokasi gambar yang dipilih
-            if(imgFile.exists()){ //jika ditemukan
+            if (imgFile.exists()) { //jika ditemukan
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath()); //convert file ke bitmap
                 imgPhoto.setImageBitmap(myBitmap); //set imageview dengan gambar yang dipilih
                 isPicChange = true; // ubah state menjadi true untuk menandakan gambar telah dipilih

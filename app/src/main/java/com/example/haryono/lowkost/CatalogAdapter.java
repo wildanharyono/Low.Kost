@@ -81,7 +81,7 @@ public class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter.ViewHold
 //                 */
 //                final Dialog dialog = new Dialog(context);
 //                dialog.setContentView(R.layout.dialog_view);
-//                dialog.setTitle("Pilih Aksi");
+//                dialog.setKostTitle("Pilih Aksi");
 //                dialog.show();
 //
 //                Button editButton = (Button) dialog.findViewById(R.id.bt_edit_data);

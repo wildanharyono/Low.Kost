@@ -22,7 +22,7 @@
         android:id="@+id/textViewLokasi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="lokasi"
+        android:text="kostLokasi"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:visibility="visible" />
 
