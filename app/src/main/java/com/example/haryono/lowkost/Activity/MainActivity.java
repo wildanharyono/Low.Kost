@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.haryono.lowkost.Fragment.SearchFragment;
 import com.example.haryono.lowkost.Model.PhotoModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add(FragmentPagerItem.of("TERBARU", PhotoFragment.class, PhotoFragment.arguments("terbaru")))
                 .add(FragmentPagerItem.of("FOTO SAYA", PhotoFragment.class, PhotoFragment.arguments("fotosaya")))
+                .add(FragmentPagerItem.of("PENCARIAN", SearchFragment.class, SearchFragment.arguments("pencarian")))
                 .create());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);

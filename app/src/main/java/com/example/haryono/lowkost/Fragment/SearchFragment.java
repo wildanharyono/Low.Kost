@@ -86,7 +86,7 @@ public class SearchFragment extends Fragment {
 
     //method untuk loaddata photo dari firebase
     private void loadData() {
-        if(menu.equals("terbaru")) { //semua foto berdasarkan yang terbaru
+        if(menu.equals("pencarian")) { //semua foto berdasarkan yang terbaru
             swipeRefresh.setRefreshing(true);
             Constant.refPhoto.addValueEventListener(new ValueEventListener() {
                 @Override
