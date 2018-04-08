@@ -22,7 +22,7 @@
                 android:text="Nama User"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"/>
-            
+
             <LinearLayout
                 android:id="@+id/llComment"
                 android:layout_width="wrap_content"

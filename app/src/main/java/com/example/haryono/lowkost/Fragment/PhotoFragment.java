@@ -71,7 +71,7 @@ public class PhotoFragment extends Fragment {
         photoList = new ArrayList<>();
 
         //konfig recyclerview layout manager dan adapter
-        rvFoto.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+        rvFoto.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         mAdapter = new PhotoAdapter(photoList, getActivity());
         rvFoto.setAdapter(mAdapter);
         loadData();
