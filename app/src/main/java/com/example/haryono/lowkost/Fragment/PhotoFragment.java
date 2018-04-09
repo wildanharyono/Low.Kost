@@ -5,31 +5,31 @@ package com.example.haryono.lowkost.Fragment;
  */
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
+        import android.support.v4.app.Fragment;
+        import android.support.v4.widget.SwipeRefreshLayout;
+        import android.support.v7.widget.RecyclerView;
+        import android.support.v7.widget.StaggeredGridLayoutManager;
+        import android.util.Log;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.Toast;
 
-import com.example.haryono.lowkost.Model.PhotoModel;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-import com.ogaclejapan.smarttablayout.utils.v4.Bundler;
+        import com.example.haryono.lowkost.Model.PhotoModel;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.ValueEventListener;
+        import com.ogaclejapan.smarttablayout.utils.v4.Bundler;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import com.example.haryono.lowkost.R;
-import com.example.haryono.lowkost.Adapter.PhotoAdapter;
-import com.example.haryono.lowkost.Config.Constant;
-import com.example.haryono.lowkost.Model.CommentModel;
-import com.example.haryono.lowkost.Model.PhotoModel;
+        import butterknife.BindView;
+        import butterknife.ButterKnife;
+        import com.example.haryono.lowkost.R;
+        import com.example.haryono.lowkost.Adapter.PhotoAdapter;
+        import com.example.haryono.lowkost.Config.Constant;
+        import com.example.haryono.lowkost.Model.CommentModel;
+        import com.example.haryono.lowkost.Model.PhotoModel;
 
 public class PhotoFragment extends Fragment {
     //deklarasi variable dan views
@@ -71,7 +71,7 @@ public class PhotoFragment extends Fragment {
         photoList = new ArrayList<>();
 
         //konfig recyclerview layout manager dan adapter
-        rvFoto.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+        rvFoto.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         mAdapter = new PhotoAdapter(photoList, getActivity());
         rvFoto.setAdapter(mAdapter);
         loadData();

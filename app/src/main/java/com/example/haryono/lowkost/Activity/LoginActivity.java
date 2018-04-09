@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.haryono.lowkost.HomeActivity;
+//import com.example.haryono.lowkost.HomeActivity;
 import com.example.haryono.lowkost.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

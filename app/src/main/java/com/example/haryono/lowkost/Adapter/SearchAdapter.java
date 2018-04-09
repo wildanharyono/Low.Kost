@@ -1,6 +1,8 @@
 package com.example.haryono.lowkost.Adapter;
 
+
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.haryono.lowkost.Activity.PhotoDetailActivity;
 import com.example.haryono.lowkost.R;
 
 import java.util.ArrayList;
@@ -23,30 +26,30 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     Context context;
     ArrayList<String> fullNameList;
     ArrayList<String> userNameList;
-    ArrayList<String> profilePicList;
+//    ArrayList<String> profilePicList;
 
     class SearchViewHolder extends RecyclerView.ViewHolder {
-        ImageView profileImage;
+//        ImageView profileImage;
         TextView full_name, user_name;
 
         public SearchViewHolder(View itemView) {
             super(itemView);
-            profileImage = (ImageView) itemView.findViewById(R.id.profileImage);
-            full_name = (TextView) itemView.findViewById(R.id.full_name);
-            user_name = (TextView) itemView.findViewById(R.id.user_name);
+//            profileImage = (ImageView) itemView.findViewById(R.id.profileImage);
+            full_name = (TextView) itemView.findViewById(R.id.tvTitle);
+            user_name = (TextView) itemView.findViewById(R.id.tvDeskripsi);
         }
     }
 
-    public SearchAdapter(Context context, ArrayList<String> fullNameList, ArrayList<String> userNameList, ArrayList<String> profilePicList) {
+    public SearchAdapter(Context context, ArrayList<String> fullNameList, ArrayList<String> userNameList) {
         this.context = context;
         this.fullNameList = fullNameList;
         this.userNameList = userNameList;
-        this.profilePicList = profilePicList;
+//        this.profilePicList = profilePicList;
     }
 
     @Override
     public SearchAdapter.SearchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.search_list_items, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.row_search_item, parent, false);
         return new SearchAdapter.SearchViewHolder(view);
     }
 
@@ -54,12 +57,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         holder.full_name.setText(fullNameList.get(position));
         holder.user_name.setText(userNameList.get(position));
-//        Glide.with(context).load(profilePicList.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
+        //Glide.with(context).load(profilePicList.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
 
         holder.full_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Full Name Clicked", Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(context, PhotoDetailActivity.class); //intent menuju detail photo
+//                in.putExtra("photoData", photo);
+                context.startActivity(in);
             }
         });
     }
