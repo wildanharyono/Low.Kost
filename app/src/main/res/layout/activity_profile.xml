@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.haryono.lowkost.MenuActivity">
-
+//text
     <TextView
         android:id="@+id/textViewUserEmail"
         android:layout_width="wrap_content"
