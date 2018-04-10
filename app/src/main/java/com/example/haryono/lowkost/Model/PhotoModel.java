@@ -44,6 +44,34 @@ public class PhotoModel implements Serializable {
         return lokasi;
     }
 
+    public void setKostName(String kostName) {
+        this.kostName = kostName;
+    }
+
+    public String getKostGenre() {
+        return kostGenre;
+    }
+
+    public void setKostGenre(String kostGenre) {
+        this.kostGenre = kostGenre;
+    }
+
+    public String getKostPrice() {
+        return kostPrice;
+    }
+
+    public void setKostPrice(String kostPrice) {
+        this.kostPrice = kostPrice;
+    }
+
+    public String getKostPhone() {
+        return kostPhone;
+    }
+
+    public void setKostPhone(String kostPhone) {
+        this.kostPhone = kostPhone;
+    }
+
     public void setLokasi(String lokasi) {
         this.lokasi = lokasi;
     }

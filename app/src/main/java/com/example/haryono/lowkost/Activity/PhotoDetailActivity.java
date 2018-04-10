@@ -92,7 +92,13 @@ public class PhotoDetailActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             photo = (PhotoModel) getIntent().getSerializableExtra("photoData"); //ambil model yg dipassing
             Picasso.get().load(photo.getImage_url()).into(imgEvent); //load gambar menggukanan picasso
-            tvDescription.setText(photo.getDesc() + "\n" + photo.getLokasi() + "\nby: " + photo.getName());
+            tvDescription.setText(
+                         "Nama Kost         :  "+photo.getKostName()+
+                    "\n"+"Jenis Kost          :  "+photo.getKostGenre() +
+                    "\n"+"Fasilitas Kost     :  "+photo.getDesc() +
+                    "\n"+"Harga Kost         :  "+photo.getKostPrice() +
+                    "\n"+"No Pemilik Kost :  "+photo.getKostPhone() +
+                    "\n"+"Pemilik                :  " + photo.getName());
 //            tvLokasi.setText(photo.getLokasi() + "\nby: " + photo.getName());
             setTitle(photo.getKostName()); //set judul toolbar
             loadComment(); //load comment
