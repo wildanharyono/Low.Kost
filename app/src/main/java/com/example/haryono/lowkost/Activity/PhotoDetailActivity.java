@@ -96,7 +96,7 @@ public class PhotoDetailActivity extends AppCompatActivity {
                          "Nama Kost         :  "+photo.getKostName()+
                     "\n"+"Jenis Kost          :  "+photo.getKostGenre() +
                     "\n"+"Fasilitas Kost     :  "+photo.getDesc() +
-                    "\n"+"Harga Kost         :  "+photo.getKostPrice() +
+                    "\n"+"Harga Kost         :  Rp "+photo.getKostPrice() +
                     "\n"+"No Pemilik Kost :  "+photo.getKostPhone() +
                     "\n"+"Pemilik                :  " + photo.getName());
 //            tvLokasi.setText(photo.getLokasi() + "\nby: " + photo.getName());
