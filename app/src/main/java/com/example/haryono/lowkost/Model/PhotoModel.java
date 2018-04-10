@@ -14,23 +14,28 @@ public class PhotoModel implements Serializable {
     //Deklarasi variable
     public String key;
     public String image_url;
-    public String title;
+    public String kostName;
     public String desc;
     public String name;
     public String email;
     public String lokasi;
+    public String kostGenre;
+    public String kostPrice;
+    public String kostPhone;
 
     //konstruktor kosong *diperlukan oleh firebase
     public PhotoModel() {
     }
 
     //konstruktor
-    public PhotoModel(String key, String image_url, String title, String desc, String lokasi, String name, String email) {
+    public PhotoModel(String key, String image_url, String kostName,String kostGenre ,String desc, String lokasi, String kostPrice, String kostPhone, String name, String email) {
         this.key = key;
         this.image_url = image_url;
-        this.title = title;
+        this.kostName = kostName;
+        this.kostGenre = kostGenre;
         this.desc = desc;
-        this.lokasi = lokasi;
+        this.kostPrice = kostPrice;
+        this.kostPhone = kostPhone;
         this.name = name;
         this.email = email;
     }
@@ -60,12 +65,12 @@ public class PhotoModel implements Serializable {
         this.image_url = image_url;
     }
 
-    public String getTitle() {
-        return title;
+    public String getKostName() {
+        return kostName;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.kostName = kostName;
     }
 
     public String getDesc() {

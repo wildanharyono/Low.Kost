@@ -35,4 +35,5 @@
         <activity android:name=".Activity.PhotoDetailEditActivity"></activity>
     </application>
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 </manifest>

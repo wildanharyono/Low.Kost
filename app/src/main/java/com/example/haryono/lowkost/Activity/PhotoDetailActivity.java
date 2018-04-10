@@ -4,7 +4,14 @@ package com.example.haryono.lowkost.Activity;
  * Created by haryono on 4/2/2018.
  */
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +21,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +48,9 @@ import com.example.haryono.lowkost.Model.PhotoModel;
 
 public class PhotoDetailActivity extends AppCompatActivity {
     //Deklarasi View
+    private static final int REQUEST_CALL = 1;
+    private EditText mEditTextNumber;
+
     @BindView(R.id.imgEvent) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             ImageView imgEvent;
     @BindView(R.id.tvDescription) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
@@ -83,7 +94,7 @@ public class PhotoDetailActivity extends AppCompatActivity {
             Picasso.get().load(photo.getImage_url()).into(imgEvent); //load gambar menggukanan picasso
             tvDescription.setText(photo.getDesc() + "\n" + photo.getLokasi() + "\nby: " + photo.getName());
 //            tvLokasi.setText(photo.getLokasi() + "\nby: " + photo.getName());
-            setTitle(photo.getTitle()); //set judul toolbar
+            setTitle(photo.getKostName()); //set judul toolbar
             loadComment(); //load comment
         }
     }
@@ -112,6 +123,16 @@ public class PhotoDetailActivity extends AppCompatActivity {
                         //showProgress(false);
                     }
                 });
+
+//        mEditTextNumber = findViewById(R.id.edit_text_number);
+        Button imageCall = findViewById(R.id.btnCall);
+
+        imageCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makePhoneCall();
+            }
+        });
     }
 
     //menampilkan tombol back button diatas kiri
@@ -150,5 +171,34 @@ public class PhotoDetailActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    private void makePhoneCall() {
+        String number = photo.getDesc().toString();
+        if (number.trim().length() > 0) {
+
+            if (ContextCompat.checkSelfPermission(PhotoDetailActivity.this,
+                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(PhotoDetailActivity.this,
+                        new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+            } else {
+                String dial = "tel:" + number;
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            }
+
+        } else {
+            Toast.makeText(PhotoDetailActivity.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CALL) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCall();
+            } else {
+                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

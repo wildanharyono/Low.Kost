@@ -57,6 +57,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         holder.full_name.setText(fullNameList.get(position));
         holder.user_name.setText(userNameList.get(position));
+
         //Glide.with(context).load(profilePicList.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
 
         holder.full_name.setOnClickListener(new View.OnClickListener() {

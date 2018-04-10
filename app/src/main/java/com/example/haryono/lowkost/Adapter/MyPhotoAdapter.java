@@ -76,7 +76,7 @@ public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.MyViewHo
         final PhotoModel photo = photoList.get(position);
         holder.tvDesc.setText(photo.getDesc());
         holder.tvName.setText(photo.getName());
-        holder.tvTitle.setText(photo.getTitle());
+        holder.tvTitle.setText(photo.getKostName());
 
         //mengambil data jumlah komentar setiap photo
         Constant.refPhoto.child(photo.getKey()).child("commentList")

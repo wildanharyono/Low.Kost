@@ -58,6 +58,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
+
                 <android.support.v7.widget.CardView
                     android:id="@+id/people_card"
                     android:layout_width="match_parent"
@@ -109,7 +111,18 @@
                                 android:layout_centerVertical="true" />
 
                         </RelativeLayout>
+
+                        <Button
+                            android:id="@+id/btnCall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="HUBUNGI PEMILIK"
+                            android:onClick="setBtnEdit"
+                            android:background="@color/colorAccent"
+                            />
                     </LinearLayout>
+
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
@@ -167,6 +180,7 @@
                             </android.support.v7.widget.RecyclerView>
                         </LinearLayout>
                     </LinearLayout>
+
                 </android.support.v7.widget.CardView>
             </LinearLayout>
 

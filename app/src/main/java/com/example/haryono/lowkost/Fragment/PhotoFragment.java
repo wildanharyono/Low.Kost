@@ -113,33 +113,6 @@ public class PhotoFragment extends Fragment {
                     //showProgress(false);
                 }
             });
-//        } else { //hanya foto user tsb yang login
-//            swipeRefresh.setRefreshing(true);
-//            Constant.refPhoto.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    photoList.clear();
-//                    // This method is called once with the initial value and again
-//                    // whenever data at this location is updated.
-//
-//                    for (final DataSnapshot ds : dataSnapshot.getChildren()) {
-//                        PhotoModel photo = ds.getValue(PhotoModel.class);
-//
-//                        if(photo.getEmail().equals(Constant.currentUser.getEmail())) {
-//                            photoList.add(photo); //dimasukkan list photo
-//                            mAdapter.notifyDataSetChanged(); //refresh adapter
-//                        }
-//                        swipeRefresh.setRefreshing(false);
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError error) {
-//                    // Failed to read value
-//                    Log.w("", "Failed to read value.", error.toException());
-//                    //showProgress(false);
-//                }
-//            });
         }
     }
 }
