@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.haryono.lowkost.Activity.PhotoDetailEditActivity;
 import com.example.haryono.lowkost.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +31,7 @@ import com.example.haryono.lowkost.Model.CommentModel;
 import com.example.haryono.lowkost.Model.PhotoModel;
 
 //class adapter untuk row pada photo list
-public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder> {
+public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.MyViewHolder> {
     //deklarasi variable
     private List<PhotoModel> photoList;
     private Context context;
@@ -53,7 +54,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
     }
 
     //konstruktor untuk menerima data yang dikirimkan dari activity ke adapter
-    public PhotoAdapter(List<PhotoModel> photoList, Context context) {
+    public MyPhotoAdapter(List<PhotoModel> photoList, Context context) {
         this.photoList = photoList;
         this.context = context;
     }
@@ -105,7 +106,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
         holder.cvPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(context, PhotoDetailActivity.class); //intent menuju detail photo
+                Intent in = new Intent(context, PhotoDetailEditActivity.class); //intent menuju detail photo
                 in.putExtra("photoData", photo);
                 context.startActivity(in);
             }

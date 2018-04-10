@@ -5,42 +5,41 @@ package com.example.haryono.lowkost.Fragment;
  */
 
 import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.widget.SwipeRefreshLayout;
-        import android.support.v7.widget.RecyclerView;
-        import android.support.v7.widget.StaggeredGridLayoutManager;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.example.haryono.lowkost.Adapter.MyPhotoAdapter;
-import com.example.haryono.lowkost.Adapter.PhotoAdapter;
 import com.example.haryono.lowkost.Model.PhotoModel;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.ValueEventListener;
-        import com.ogaclejapan.smarttablayout.utils.v4.Bundler;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.ogaclejapan.smarttablayout.utils.v4.Bundler;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
-        import butterknife.BindView;
-        import butterknife.ButterKnife;
-        import com.example.haryono.lowkost.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import com.example.haryono.lowkost.R;
+import com.example.haryono.lowkost.Adapter.MyPhotoAdapter;
 import com.example.haryono.lowkost.Config.Constant;
 
-public class PhotoFragment extends Fragment {
+public class MyPhotoFragment extends Fragment {
     //deklarasi variable dan views
     private static final String KEY_PARAM = "key_param";
     private ArrayList<PhotoModel> photoList;
-    private PhotoAdapter mAdapter;
+    private MyPhotoAdapter mAdapter;
 
     @BindView(R.id.rvFoto) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             RecyclerView rvFoto;
     @BindView(R.id.swipeRefresh) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             SwipeRefreshLayout swipeRefresh;
 
-    public PhotoFragment() {
+    public MyPhotoFragment() {
         // Required empty public constructor
     }
 
@@ -70,7 +69,7 @@ public class PhotoFragment extends Fragment {
 
         //konfig recyclerview layout manager dan adapter
         rvFoto.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        mAdapter = new PhotoAdapter(photoList, getActivity());
+        mAdapter = new MyPhotoAdapter(photoList, getActivity());
         rvFoto.setAdapter(mAdapter);
         loadData();
 
@@ -88,22 +87,24 @@ public class PhotoFragment extends Fragment {
 
     //method untuk loaddata photo dari firebase
     private void loadData() {
-        if(menu.equals("terbaru")) { //semua foto berdasarkan yang terbaru
+        if(menu.equals("fotosaya")) { //semua foto berdasarkan yang terbaru
             swipeRefresh.setRefreshing(true);
             Constant.refPhoto.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     photoList.clear();
-                    commentCount = 0;
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
 
                     for (final DataSnapshot ds : dataSnapshot.getChildren()) {
-                        PhotoModel model = ds.getValue(PhotoModel.class);
-                        photoList.add(model); //dimasukkan list photo
-                        mAdapter.notifyDataSetChanged(); //refresh adapter
+                        PhotoModel photo = ds.getValue(PhotoModel.class);
+
+                        if(photo.getEmail().equals(Constant.currentUser.getEmail())) {
+                            photoList.add(photo); //dimasukkan list photo
+                            mAdapter.notifyDataSetChanged(); //refresh adapter
+                        }
+                        swipeRefresh.setRefreshing(false);
                     }
-                    swipeRefresh.setRefreshing(false);
                 }
 
                 @Override
@@ -113,7 +114,7 @@ public class PhotoFragment extends Fragment {
                     //showProgress(false);
                 }
             });
-//        } else { //hanya foto user tsb yang login
+        } else { //hanya foto user tsb yang login
 //            swipeRefresh.setRefreshing(true);
 //            Constant.refPhoto.addValueEventListener(new ValueEventListener() {
 //                @Override

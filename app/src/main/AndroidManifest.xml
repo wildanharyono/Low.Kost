@@ -23,7 +23,7 @@
         </activity>
         <activity
             android:name=".Activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -31,7 +31,8 @@
         <activity
             android:name=".Activity.PhotoDetailActivity"
             android:theme="@style/AppTheme.NoActionBar.Detail" />
-        <activity android:name=".Activity.SearchBarActivity"></activity>
+        <activity android:name=".Activity.SearchBarActivity" />
+        <activity android:name=".Activity.PhotoDetailEditActivity"></activity>
     </application>
 
 </manifest>

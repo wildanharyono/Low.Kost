@@ -29,7 +29,7 @@
 //import butterknife.BindView;
 //import butterknife.ButterKnife;
 //import com.example.haryono.lowkost.R;
-//import com.example.haryono.lowkost.Adapter.PhotoAdapter;
+//import com.example.haryono.lowkost.Adapter.MyPhotoAdapter;
 //import com.example.haryono.lowkost.Config.Constant;
 //import com.example.haryono.lowkost.Model.CommentModel;
 //import com.example.haryono.lowkost.Model.PhotoModel;
@@ -39,7 +39,7 @@
 //    private static final String KEY_PARAM = "key_param";
 //    private ArrayList<PhotoModel> photoList;
 //    ArrayList<String> fullNameList;
-//    private PhotoAdapter mAdapter;
+//    private MyPhotoAdapter mAdapter;
 //    DatabaseReference databaseReference;
 //    FirebaseUser firebaseUser;
 //
@@ -85,7 +85,7 @@
 //
 //        //konfig recyclerview layout manager dan adapter
 //        rvFoto.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-//        mAdapter = new PhotoAdapter(photoList, getActivity());
+//        mAdapter = new MyPhotoAdapter(photoList, getActivity());
 //        rvFoto.setAdapter(mAdapter);
 //        loadData();
 //
