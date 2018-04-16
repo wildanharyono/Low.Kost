@@ -80,7 +80,7 @@ public class AddPhotoActivity extends AppCompatActivity implements View.OnClickL
                         add = new AddPhotoActivity();
                         break;
                     case R.id.action_money :
-                        startActivity(new Intent(AddPhotoActivity.this, SearchActivity.class));
+                        startActivity(new Intent(AddPhotoActivity.this, SearchBarActivity.class));
                         break;
                 }
                 return true;

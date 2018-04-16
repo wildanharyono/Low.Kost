@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, AddPhotoActivity.class));
                         break;
                     case R.id.action_money :
-                        startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                        startActivity(new Intent(MainActivity.this, SearchBarActivity.class));
                         break;
                 }
                 return true;

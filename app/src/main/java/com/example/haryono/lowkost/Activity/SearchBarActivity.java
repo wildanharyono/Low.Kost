@@ -1,5 +1,8 @@
 package com.example.haryono.lowkost.Activity;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -7,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.example.haryono.lowkost.Adapter.SearchAdapter;
@@ -30,6 +34,7 @@ public class SearchBarActivity extends AppCompatActivity {
     ArrayList<String> userNameList;
     ArrayList<String> profilePicList;
     SearchAdapter searchAdapter;
+    SearchBarActivity search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,26 @@ public class SearchBarActivity extends AppCompatActivity {
                 }
             }
         });
+
+        BottomNavigationView btmNavView3 = (BottomNavigationView) findViewById(R.id.btm_nav);
+        btmNavView3.setSelectedItemId(R.id.action_money);
+        btmNavView3.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_home :
+                        startActivity(new Intent(SearchBarActivity.this, MainActivity.class));
+                        break;
+                    case R.id.action_star :
+                        startActivity(new Intent(SearchBarActivity.this, AddPhotoActivity.class));
+                        break;
+                    case R.id.action_money :
+                        search = new SearchBarActivity();
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     private void setAdapter(final String searchedString) {
@@ -121,7 +146,7 @@ public class SearchBarActivity extends AppCompatActivity {
                         break;
                 }
 
-                searchAdapter = new SearchAdapter(SearchBarActivity.this, fullNameList);
+                searchAdapter = new SearchAdapter(SearchBarActivity.this, fullNameList,userNameList);
                 recyclerView.setAdapter(searchAdapter);
             }
 
