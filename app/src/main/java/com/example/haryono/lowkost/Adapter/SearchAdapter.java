@@ -31,7 +31,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
         public SearchViewHolder(View itemView) {
             super(itemView);
-            profileImage = (ImageView) itemView.findViewById(R.id.profileImage);
+//            profileImage = (ImageView) itemView.findViewById(R.id.profileImage);
             full_name = (TextView) itemView.findViewById(R.id.full_name);
             user_name = (TextView) itemView.findViewById(R.id.user_name);
         }
@@ -54,7 +54,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         holder.full_name.setText(fullNameList.get(position));
         holder.user_name.setText(userNameList.get(position));
-        Glide.with(context).load(profilePicList.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
+//        Glide.with(context).load(profilePicList.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
 
         holder.full_name.setOnClickListener(new View.OnClickListener() {
             @Override

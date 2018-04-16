@@ -7,6 +7,8 @@ package com.example.haryono.lowkost.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     //Dekalarasi View
     @BindView(R.id.btnAdd) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             FloatingActionButton btnAdd;
+    @BindView(R.id.btm_nav)
+    BottomNavigationView btmNavView;
+    MainActivity main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,25 @@ public class MainActivity extends AppCompatActivity {
             viewPager.setAdapter(adapter); //masukkan fragment pada adapter viewpager
             viewPagerTab.setViewPager(viewPager); //mengatur tab pada viewpager
         }
+
+        btmNavView = (BottomNavigationView) findViewById(R.id.btm_nav);
+        btmNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_home :
+                        main = new MainActivity();
+                        break;
+                    case R.id.action_star :
+                        startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                        break;
+                    case R.id.action_money :
+                        startActivity(new Intent(MainActivity.this, AddPhotoActivity.class));
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     //method untuk handling tombol add
