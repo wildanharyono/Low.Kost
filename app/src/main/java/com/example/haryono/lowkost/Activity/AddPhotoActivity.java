@@ -8,9 +8,11 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -48,9 +50,13 @@ public class AddPhotoActivity extends AppCompatActivity implements View.OnClickL
     ImageView imgPhoto;
     @BindView(R.id.btnChoose) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
     Button btnChoose;
+    @BindView(R.id.btm_nav)
+    BottomNavigationView btmNavView2;
     private StorageReference refPhotoProfile;
     private Uri photoUrl;
     private ProgressDialog pbDialog;
+
+    AddPhotoActivity add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +66,26 @@ public class AddPhotoActivity extends AppCompatActivity implements View.OnClickL
         btnChoose.setOnClickListener(this);
         btnPost.setOnClickListener(this);
         pbDialog = new ProgressDialog(this);
+
+        btmNavView2 = (BottomNavigationView) findViewById(R.id.btm_nav);
+        btmNavView2.setSelectedItemId(R.id.action_star);
+        btmNavView2.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_home :
+                        startActivity(new Intent(AddPhotoActivity.this, MainActivity.class));
+                        break;
+                    case R.id.action_star :
+                        add = new AddPhotoActivity();
+                        break;
+                    case R.id.action_money :
+                        startActivity(new Intent(AddPhotoActivity.this, SearchActivity.class));
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     //method handling onClickListener

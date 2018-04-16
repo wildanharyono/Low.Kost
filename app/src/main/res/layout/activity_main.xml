@@ -59,14 +59,14 @@
 
     </RelativeLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="12dp"
-        android:src="@drawable/ic_edit_black_24dp"
-        android:tint="#fff"/>
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/btnAdd"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_margin="12dp"-->
+        <!--android:src="@drawable/ic_edit_black_24dp"-->
+        <!--android:tint="#fff"/>-->
 
 </RelativeLayout>

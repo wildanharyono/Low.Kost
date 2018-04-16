@@ -30,8 +30,8 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
 
     //Dekalarasi View
-    @BindView(R.id.btnAdd) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
-            FloatingActionButton btnAdd;
+//    @BindView(R.id.btnAdd) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
+//            FloatingActionButton btnAdd;
     @BindView(R.id.btm_nav)
     BottomNavigationView btmNavView;
     MainActivity main;
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         btmNavView = (BottomNavigationView) findViewById(R.id.btm_nav);
+        btmNavView.setSelectedItemId(R.id.action_home);
         btmNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -70,10 +71,10 @@ public class MainActivity extends AppCompatActivity {
                         main = new MainActivity();
                         break;
                     case R.id.action_star :
-                        startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                        startActivity(new Intent(MainActivity.this, AddPhotoActivity.class));
                         break;
                     case R.id.action_money :
-                        startActivity(new Intent(MainActivity.this, AddPhotoActivity.class));
+                        startActivity(new Intent(MainActivity.this, SearchActivity.class));
                         break;
                 }
                 return true;
@@ -81,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //method untuk handling tombol add
-    @OnClick(R.id.btnAdd)
-    public void add() {
-        startActivity(new Intent(MainActivity.this, AddPhotoActivity.class)); // panggil add photo activity
-    }
+//    //method untuk handling tombol add
+//    @OnClick(R.id.btnAdd)
+//    public void add() {
+//        startActivity(new Intent(MainActivity.this, AddPhotoActivity.class)); // panggil add photo activity
+//    }
 
     //method untuk implement menu pada activity
     @Override
