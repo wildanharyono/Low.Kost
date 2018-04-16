@@ -180,7 +180,7 @@ public class PhotoDetailActivity extends AppCompatActivity {
     }
 
     private void makePhoneCall() {
-        String number = photo.getDesc().toString();
+        String number = photo.getKostPhone().toString();
         if (number.trim().length() > 0) {
 
             if (ContextCompat.checkSelfPermission(PhotoDetailActivity.this,

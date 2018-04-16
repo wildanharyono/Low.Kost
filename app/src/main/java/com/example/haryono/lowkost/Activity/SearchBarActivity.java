@@ -32,7 +32,7 @@ public class SearchBarActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     ArrayList<String> fullNameList;
     ArrayList<String> userNameList;
-//    ArrayList<String> profilePicList;
+    //    ArrayList<String> profilePicList;
     SearchAdapter searchAdapter;
 
     @Override

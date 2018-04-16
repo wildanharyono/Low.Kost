@@ -29,7 +29,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 //    ArrayList<String> profilePicList;
 
     class SearchViewHolder extends RecyclerView.ViewHolder {
-//        ImageView profileImage;
+        //        ImageView profileImage;
         TextView full_name, user_name;
 
         public SearchViewHolder(View itemView) {
