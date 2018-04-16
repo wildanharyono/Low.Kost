@@ -102,4 +102,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+        FirebaseUser currentUser = Constant.mAuth.getCurrentUser();
+        Constant.currentUser = currentUser;
+        if (currentUser!=null){
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
+    }
 }
