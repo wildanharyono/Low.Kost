@@ -2,16 +2,12 @@ package com.example.haryono.lowkost.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.haryono.lowkost.Adapter.SearchAdapter;
 import com.example.haryono.lowkost.R;
@@ -125,7 +121,7 @@ public class SearchBarActivity extends AppCompatActivity {
                         break;
                 }
 
-                searchAdapter = new SearchAdapter(SearchBarActivity.this, fullNameList, userNameList, profilePicList);
+                searchAdapter = new SearchAdapter(SearchBarActivity.this, fullNameList);
                 recyclerView.setAdapter(searchAdapter);
             }
 

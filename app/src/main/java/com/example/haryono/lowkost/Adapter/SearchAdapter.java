@@ -2,7 +2,6 @@ package com.example.haryono.lowkost.Adapter;
 
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.haryono.lowkost.R;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         }
     }
 
-    public SearchAdapter(Context context, ArrayList<String> fullNameList, ArrayList<String> userNameList, ArrayList<String> profilePicList) {
+    public SearchAdapter(Context context, ArrayList<String> fullNameList) {
         this.context = context;
         this.fullNameList = fullNameList;
         this.userNameList = userNameList;
