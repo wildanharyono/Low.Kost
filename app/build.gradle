@@ -38,14 +38,10 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile 'com.firebaseui:firebase-ui-storage:0.6.0'
+    implementation 'com.firebaseui:firebase-ui-storage:0.6.0'
+    compile 'com.firebaseui:firebase-ui-database:0.4.4'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.firebaseui:firebase-ui:0.6.2'
+    compile 'com.github.hani-momanii:SuperNova-Emoji:1.0'
 }
-
-
-
-
-
-
-
 apply plugin: 'com.google.gms.google-services'
