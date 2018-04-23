@@ -102,7 +102,7 @@ public class ChatActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference().push().setValue(new Message(emojiconEditText.getText().toString(),
+                FirebaseDatabase.getInstance().getReference().child("Messages").push().setValue(new Message(emojiconEditText.getText().toString(),
                         FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 emojiconEditText.setText("");
                 emojiconEditText.requestFocus();
@@ -129,7 +129,7 @@ public class ChatActivity extends AppCompatActivity {
     private void displayChatMessage() {
 
         ListView listOfMessage = (ListView)findViewById(R.id.list_of_message);
-        adapter = new FirebaseListAdapter<Message>(this,Message.class,R.layout.list_item,FirebaseDatabase.getInstance().getReference())
+        adapter = new FirebaseListAdapter<Message>(this,Message.class,R.layout.list_item,FirebaseDatabase.getInstance().getReference().child("Messages"))
         {
             @Override
             protected void populateView(View v, Message model, int position) {

@@ -102,8 +102,8 @@ public class SearchBarActivity extends AppCompatActivity {
                 * */
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
-                    String full_name = snapshot.child("title").getValue(String.class);
-                    String user_name = snapshot.child("lokasi").getValue(String.class);
+                    String full_name = snapshot.child("kostName").getValue(String.class);
+                    String user_name = snapshot.child("kostGenre").getValue(String.class);
 //                    String profile_pic = snapshot.child("profile_pic").getValue(String.class);
 
                     if (full_name.toLowerCase().contains(searchedString.toLowerCase())) {

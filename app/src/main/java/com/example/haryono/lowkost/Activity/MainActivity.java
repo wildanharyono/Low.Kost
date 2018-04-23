@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSearch)
     public void search() {
-        startActivity(new Intent(MainActivity.this, ChatActivity.class)); // panggil add photo activity
+        startActivity(new Intent(MainActivity.this, SearchBarActivity.class)); // panggil add photo activity
     }
 
     //method untuk implement menu pada activity

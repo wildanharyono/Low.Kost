@@ -1,8 +1,8 @@
 package com.example.haryono.lowkost.Adapter;
 
 
+
 import android.content.Context;
-import android.content.Intent;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.haryono.lowkost.Activity.PhotoDetailActivity;
 import com.example.haryono.lowkost.R;
 
 import java.util.ArrayList;
@@ -29,12 +28,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 //    ArrayList<String> profilePicList;
 
     class SearchViewHolder extends RecyclerView.ViewHolder {
-        //        ImageView profileImage;
+     //   ImageView profileImage;
         TextView full_name, user_name;
 
         public SearchViewHolder(View itemView) {
             super(itemView);
-//            profileImage = (ImageView) itemView.findViewById(R.id.profileImage);
+//            profileImage = (ImageView) itemView.findViewById(R.id.imgPhoto);
             full_name = (TextView) itemView.findViewById(R.id.tvTitle);
             user_name = (TextView) itemView.findViewById(R.id.tvDeskripsi);
         }
@@ -57,15 +56,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         holder.full_name.setText(fullNameList.get(position));
         holder.user_name.setText(userNameList.get(position));
-
-        //Glide.with(context).load(profilePicList.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
+//        Glide.with(context).load(profilePicList.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
 
         holder.full_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(context, PhotoDetailActivity.class); //intent menuju detail photo
-//                in.putExtra("photoData", photo);
-                context.startActivity(in);
+                Toast.makeText(context, "Full Name Clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
