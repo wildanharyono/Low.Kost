@@ -5,14 +5,17 @@ package com.example.haryono.lowkost.Adapter;
  */
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -70,7 +73,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
 
     //binding antara data yang didapatkan ke dalam views
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final PhotoModel photo = photoList.get(position);
         holder.tvDesc.setText(photo.getDesc());
         holder.tvName.setText(photo.getName());
@@ -109,7 +112,55 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
                 context.startActivity(in);
             }
         });
+
+        holder.cvPhoto.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_view);
+                dialog.show();
+
+                Button shareDesc = (Button) dialog.findViewById(R.id.bt_share_desc);
+                shareDesc.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        PhotoModel poto = photoList.get(position);
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        intent.setType("image/*");
+                        String title = "Nama kos: ";
+                        String body = "Status: ";
+                        Uri uri = Uri.parse(poto.getImage_url());
+                        intent.putExtra(Intent.EXTRA_TEXT, title + poto.getTitle() + "\n" +
+                                body + poto.getDesc());
+                        intent.putExtra(Intent.EXTRA_STREAM, uri + poto.getImage_url());
+                        context.startActivity(Intent.createChooser(intent, "Share Using"));
+                        dialog.dismiss();
+                    }
+                });
+//                return true;
+
+                Button shareImg = (Button) dialog.findViewById(R.id.bt_share_img);
+                shareImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        PhotoModel poto = photoList.get(position);
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                        intent.setType("image/*");
+                        intent.putExtra(Intent.EXTRA_STREAM, poto.getImage_url().hashCode());
+                        context.startActivity(Intent.createChooser(intent, "Share Using"));
+                        dialog.dismiss();
+
+                    }
+                });
+                return true;
+
+            }
+        });
     }
+
 
     //count data
     @Override

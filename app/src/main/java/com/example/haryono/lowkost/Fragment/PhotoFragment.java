@@ -4,15 +4,20 @@ package com.example.haryono.lowkost.Fragment;
  * Created by haryono on 4/2/2018.
  */
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.haryono.lowkost.Adapter.PhotoAdapter;
 import com.example.haryono.lowkost.Config.Constant;
@@ -24,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.ogaclejapan.smarttablayout.utils.v4.Bundler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +45,7 @@ public class PhotoFragment extends Fragment {
     @BindView(R.id.swipeRefresh) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             SwipeRefreshLayout swipeRefresh;
 
+
     public PhotoFragment() {
         // Required empty public constructor
     }
@@ -52,7 +59,9 @@ public class PhotoFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
     }
 
     String menu;
@@ -112,6 +121,7 @@ public class PhotoFragment extends Fragment {
                     //showProgress(false);
                 }
             });
+
         } else { //hanya foto user tsb yang login
             swipeRefresh.setRefreshing(true);
             Constant.refPhoto.addValueEventListener(new ValueEventListener() {
