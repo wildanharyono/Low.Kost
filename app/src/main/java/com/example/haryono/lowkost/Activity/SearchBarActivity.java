@@ -32,6 +32,7 @@ public class SearchBarActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     ArrayList<String> fullNameList;
     ArrayList<String> userNameList;
+    ArrayList<String> userList;
     //    ArrayList<String> profilePicList;
     SearchAdapter searchAdapter;
 
@@ -55,6 +56,7 @@ public class SearchBarActivity extends AppCompatActivity {
         * */
         fullNameList = new ArrayList<>();
         userNameList = new ArrayList<>();
+        userList = new ArrayList<>();
 //        profilePicList = new ArrayList<>();
 
         search_edit_text.addTextChangedListener(new TextWatcher() {
@@ -76,6 +78,7 @@ public class SearchBarActivity extends AppCompatActivity {
                     * */
                     fullNameList.clear();
                     userNameList.clear();
+                    userList.clear();
 //                    profilePicList.clear();
                     recyclerView.removeAllViews();
                 }
@@ -92,6 +95,7 @@ public class SearchBarActivity extends AppCompatActivity {
                 * */
                 fullNameList.clear();
                 userNameList.clear();
+                userList.clear();
 //                profilePicList.clear();
                 recyclerView.removeAllViews();
 
@@ -104,16 +108,19 @@ public class SearchBarActivity extends AppCompatActivity {
                     String uid = snapshot.getKey();
                     String full_name = snapshot.child("kostName").getValue(String.class);
                     String user_name = snapshot.child("kostGenre").getValue(String.class);
+                    String username = snapshot.child("email").getValue(String.class);
 //                    String profile_pic = snapshot.child("profile_pic").getValue(String.class);
 
                     if (full_name.toLowerCase().contains(searchedString.toLowerCase())) {
                         fullNameList.add(full_name);
                         userNameList.add(user_name);
+                        userList.add(username);
 //                        profilePicList.add(profile_pic);
                         counter++;
                     } else if (user_name.toLowerCase().contains(searchedString.toLowerCase())) {
                         fullNameList.add(full_name);
                         userNameList.add(user_name);
+                        userList.add(username);
 //                        profilePicList.add(profile_pic);
                         counter++;
                     }
@@ -125,7 +132,7 @@ public class SearchBarActivity extends AppCompatActivity {
                         break;
                 }
 
-                searchAdapter = new SearchAdapter(SearchBarActivity.this, fullNameList, userNameList);
+                searchAdapter = new SearchAdapter(SearchBarActivity.this, fullNameList, userNameList, userList);
                 recyclerView.setAdapter(searchAdapter);
             }
 

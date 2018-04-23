@@ -74,7 +74,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final PhotoModel photo = photoList.get(position);
         holder.tvDesc.setText(photo.getDesc());
-        holder.tvName.setText(photo.getName());
+        holder.tvName.setText(photo.getEmail());
         holder.tvTitle.setText(photo.getKostName());
 
         //mengambil data jumlah komentar setiap photo

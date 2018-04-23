@@ -25,24 +25,27 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     Context context;
     ArrayList<String> fullNameList;
     ArrayList<String> userNameList;
+    ArrayList<String> userList;
 //    ArrayList<String> profilePicList;
 
     class SearchViewHolder extends RecyclerView.ViewHolder {
      //   ImageView profileImage;
-        TextView full_name, user_name;
+        TextView full_name, user_name, username;
 
         public SearchViewHolder(View itemView) {
             super(itemView);
 //            profileImage = (ImageView) itemView.findViewById(R.id.imgPhoto);
             full_name = (TextView) itemView.findViewById(R.id.tvTitle);
             user_name = (TextView) itemView.findViewById(R.id.tvDeskripsi);
+            username = (TextView) itemView.findViewById(R.id.tvNama);
         }
     }
 
-    public SearchAdapter(Context context, ArrayList<String> fullNameList, ArrayList<String> userNameList) {
+    public SearchAdapter(Context context, ArrayList<String> fullNameList, ArrayList<String> userNameList, ArrayList<String> userList) {
         this.context = context;
         this.fullNameList = fullNameList;
         this.userNameList = userNameList;
+        this.userList = userList;
 //        this.profilePicList = profilePicList;
     }
 
@@ -56,6 +59,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         holder.full_name.setText(fullNameList.get(position));
         holder.user_name.setText(userNameList.get(position));
+        holder.username.setText(userList.get(position));
 //        Glide.with(context).load(profilePicList.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
 
         holder.full_name.setOnClickListener(new View.OnClickListener() {
