@@ -103,6 +103,7 @@ public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.MyViewHo
                 });
 
         Picasso.get().load(photo.getImage_url()).into(holder.imgPhoto); //load gambar dengan picasso
+
         holder.cvPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -2,16 +2,12 @@ package com.example.haryono.lowkost.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.haryono.lowkost.Adapter.SearchAdapter;
 import com.example.haryono.lowkost.R;
@@ -30,9 +26,12 @@ public class SearchBarActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
-    ArrayList<String> fullNameList;
-    ArrayList<String> userNameList;
+    ArrayList<String> kostNameList;
+    ArrayList<String> kostGenreList;
     ArrayList<String> userList;
+    ArrayList<String> image_urlList;
+    ArrayList<String> kostPriceList;
+    ArrayList<String> kostPhoneList;
     //    ArrayList<String> profilePicList;
     SearchAdapter searchAdapter;
 
@@ -54,9 +53,12 @@ public class SearchBarActivity extends AppCompatActivity {
         /*
         * Create a array list for each node you want to use
         * */
-        fullNameList = new ArrayList<>();
-        userNameList = new ArrayList<>();
+        kostNameList = new ArrayList<>();
+        kostGenreList = new ArrayList<>();
         userList = new ArrayList<>();
+        image_urlList = new ArrayList<>();
+        kostPriceList = new ArrayList<>();
+        kostPhoneList = new ArrayList<>();
 //        profilePicList = new ArrayList<>();
 
         search_edit_text.addTextChangedListener(new TextWatcher() {
@@ -76,9 +78,12 @@ public class SearchBarActivity extends AppCompatActivity {
                     /*
                     * Clear the list when editText is empty
                     * */
-                    fullNameList.clear();
-                    userNameList.clear();
+                    kostNameList.clear();
+                    kostGenreList.clear();
                     userList.clear();
+                    image_urlList.clear();
+                    kostPriceList.clear();
+                    kostPhoneList.clear();
 //                    profilePicList.clear();
                     recyclerView.removeAllViews();
                 }
@@ -93,9 +98,12 @@ public class SearchBarActivity extends AppCompatActivity {
                 /*
                 * Clear the list for every new search
                 * */
-                fullNameList.clear();
-                userNameList.clear();
+                kostNameList.clear();
+                kostGenreList.clear();
                 userList.clear();
+                image_urlList.clear();
+                kostPriceList.clear();
+                kostPhoneList.clear();
 //                profilePicList.clear();
                 recyclerView.removeAllViews();
 
@@ -106,21 +114,28 @@ public class SearchBarActivity extends AppCompatActivity {
                 * */
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
-                    String full_name = snapshot.child("kostName").getValue(String.class);
-                    String user_name = snapshot.child("kostGenre").getValue(String.class);
-                    String username = snapshot.child("email").getValue(String.class);
+                    String kostName = snapshot.child("kostName").getValue(String.class);
+                    String kostGenre = snapshot.child("kostGenre").getValue(String.class);
+                    String email = snapshot.child("email").getValue(String.class);
+                    String image_url = snapshot.child("image_urlList").getValue(String.class);
+                    String kostPrice = snapshot.child("kostPrice").getValue(String.class);
+                    String kostPhone = snapshot.child("kostPhone").getValue(String.class);
+
 //                    String profile_pic = snapshot.child("profile_pic").getValue(String.class);
 
-                    if (full_name.toLowerCase().contains(searchedString.toLowerCase())) {
-                        fullNameList.add(full_name);
-                        userNameList.add(user_name);
-                        userList.add(username);
+                    if (kostName.toLowerCase().contains(searchedString.toLowerCase())) {
+                        kostNameList.add(kostName);
+                        kostGenreList.add(kostGenre);
+                        userList.add(email);
+                        image_urlList.add(image_url);
+                        kostPriceList.add(kostPrice);
+                        kostPhoneList.add(kostPhone);
 //                        profilePicList.add(profile_pic);
                         counter++;
-                    } else if (user_name.toLowerCase().contains(searchedString.toLowerCase())) {
-                        fullNameList.add(full_name);
-                        userNameList.add(user_name);
-                        userList.add(username);
+                    } else if (kostGenre.toLowerCase().contains(searchedString.toLowerCase())) {
+                        kostNameList.add(kostName);
+                        kostGenreList.add(kostGenre);
+                        userList.add(email);
 //                        profilePicList.add(profile_pic);
                         counter++;
                     }
@@ -132,7 +147,7 @@ public class SearchBarActivity extends AppCompatActivity {
                         break;
                 }
 
-                searchAdapter = new SearchAdapter(SearchBarActivity.this, fullNameList, userNameList, userList);
+                searchAdapter = new SearchAdapter(SearchBarActivity.this, kostNameList, kostGenreList, userList, image_urlList, kostPriceList, kostPhoneList);
                 recyclerView.setAdapter(searchAdapter);
             }
 

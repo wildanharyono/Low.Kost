@@ -43,5 +43,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.firebaseui:firebase-ui:0.6.2'
     compile 'com.github.hani-momanii:SuperNova-Emoji:1.0'
+    compile 'com.google.android.gms:play-services:12.0.1'
 }
 apply plugin: 'com.google.gms.google-services'
