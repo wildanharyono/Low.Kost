@@ -34,6 +34,7 @@ public class PhotoModel implements Serializable {
         this.kostName = kostName;
         this.kostGenre = kostGenre;
         this.desc = desc;
+        this.lokasi = lokasi;
         this.kostPrice = kostPrice;
         this.kostPhone = kostPhone;
         this.name = name;

@@ -352,10 +352,8 @@ public class AddPhotoActivity extends AppCompatActivity implements View.OnClickL
     public void onConnectionSuspended(int i) {
         mGoogleApiClient.connect();
     }
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 
     @Override
