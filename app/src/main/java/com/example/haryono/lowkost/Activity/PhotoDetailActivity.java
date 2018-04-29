@@ -4,14 +4,22 @@ package com.example.haryono.lowkost.Activity;
  * Created by haryono on 4/2/2018.
  */
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -51,6 +59,7 @@ public class PhotoDetailActivity extends AppCompatActivity {
             android.support.v7.widget.Toolbar toolbar;
     private ArrayList<CommentModel> commentList; //arraylist untuk menyimpan hasil load komentar
     private CommentAdapter mAdapter;
+    private static final int REQUEST_CALL = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +77,15 @@ public class PhotoDetailActivity extends AppCompatActivity {
         rvKomentar.setAdapter(mAdapter);
 
         loadIntent();
+
+        Button imageCall = findViewById(R.id.btnCall);
+
+        imageCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makePhoneCall();
+            }
+        });
     }
 
     PhotoModel photo;
@@ -76,9 +94,14 @@ public class PhotoDetailActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             photo = (PhotoModel) getIntent().getSerializableExtra("photoData"); //ambil model yg dipassing
             Picasso.get().load(photo.getImage_url()).into(imgEvent); //load gambar menggukanan picasso
-            tvDescription.setText(photo.getDesc() + "\n" + photo.getLokasi() + "\nby: " + photo.getName());
+            tvDescription.setText("Nama Kost         :  "+photo.getKostName()+
+                    "\n"+"Jenis Kost          :  "+photo.getKostGenre() +
+                    "\n"+"Fasilitas Kost     :  "+photo.getDesc() +
+                    "\n"+"Harga Kost         :  Rp "+photo.getKostPrice() +
+                    "\n"+"No Pemilik Kost :  "+photo.getKostPhone() +
+                    "\n"+"Pemilik                :  " + photo.getName());
 //            tvLokasi.setText(photo.getLokasi() + "\nby: " + photo.getName());
-            setTitle(photo.getTitle()); //set judul toolbar
+            setTitle(photo.getKostName()); //set judul toolbar
             loadComment(); //load comment
         }
     }
@@ -145,5 +168,34 @@ public class PhotoDetailActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    private void makePhoneCall() {
+        String number = photo.getKostPhone().toString();
+        if (number.trim().length() > 0) {
+
+            if (ContextCompat.checkSelfPermission(PhotoDetailActivity.this,
+                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(PhotoDetailActivity.this,
+                        new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+            } else {
+                String dial = "tel:" + number;
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            }
+
+        } else {
+            Toast.makeText(PhotoDetailActivity.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CALL) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCall();
+            } else {
+                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

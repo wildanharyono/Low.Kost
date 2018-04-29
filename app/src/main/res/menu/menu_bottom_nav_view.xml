@@ -10,13 +10,13 @@
     <item
         android:id="@+id/action_money"
         android:enabled="true"
-        android:icon="@drawable/ic_money"
-        android:title="Bank"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_star"
         android:enabled="true"
-        android:icon="@drawable/ic_star"
-        android:title="Star"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="Add"
         app:showAsAction="ifRoom" />
 </menu>

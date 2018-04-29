@@ -31,11 +31,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 //class adapter untuk row pada photo list
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder> {
     //deklarasi variable
     private List<PhotoModel> photoList;
     private Context context;
+    @BindView(R.id.btnShare)
+    Button btnSyer;
 
     //class viewholder untuk declare dan inisialisasi views pada row yang digunakan
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -51,6 +55,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
             tvTitle = (TextView) view.findViewById(R.id.tvTitle);
             tvComment = (TextView) view.findViewById(R.id.tvComment);
             cvPhoto = (CardView) view.findViewById(R.id.cvPhoto);
+            btnSyer = (Button) view.findViewById(R.id.btnShare);
         }
     }
 
@@ -77,7 +82,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
         final PhotoModel photo = photoList.get(position);
         holder.tvDesc.setText(photo.getDesc());
         holder.tvName.setText(photo.getName());
-        holder.tvTitle.setText(photo.getTitle());
+        holder.tvTitle.setText(photo.getKostName());
 
         //mengambil data jumlah komentar setiap photo
         Constant.refPhoto.child(photo.getKey()).child("commentList")
@@ -132,7 +137,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
                         String title = "Nama kos: ";
                         String body = "Status: ";
                         Uri uri = Uri.parse(poto.getImage_url());
-                        intent.putExtra(Intent.EXTRA_TEXT, title + poto.getTitle() + "\n" +
+                        intent.putExtra(Intent.EXTRA_TEXT, title + poto.getKostName() + "\n" +
                                 body + poto.getDesc());
                         intent.putExtra(Intent.EXTRA_STREAM, uri + poto.getImage_url());
                         context.startActivity(Intent.createChooser(intent, "Share Using"));
@@ -159,6 +164,26 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
 
             }
         });
+
+        btnSyer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PhotoModel poto = photoList.get(position);
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.setType("image/*");
+                String title = "Nama kos: ";
+                String body = "Status: ";
+                Uri uri = Uri.parse(poto.getImage_url());
+                intent.putExtra(Intent.EXTRA_TEXT, title + poto.getKostName() + "\n" +
+                        body + poto.getDesc());
+                intent.putExtra(Intent.EXTRA_STREAM, uri + poto.getImage_url());
+                context.startActivity(Intent.createChooser(intent, "Share Using"));
+            }
+        });
+
+
     }
 
 

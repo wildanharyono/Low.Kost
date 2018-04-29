@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.esafirm.imagepicker.features.ImagePicker;
@@ -42,19 +43,24 @@ public class AddPhotoActivity extends AppCompatActivity implements View.OnClickL
             FloatingActionButton btnPost;
     @BindView(R.id.tvTitle) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             TextInputEditText tvTitle;
+    @BindView(R.id.spinnerGenres) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
+            Spinner spinnerGenres;
     @BindView(R.id.tvPost) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             TextInputEditText tvPost;
+    @BindView(R.id.tvHarga) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
+            TextInputEditText tvHarga;
+    @BindView(R.id.tvPhone) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
+            TextInputEditText tvPhone;
     @BindView(R.id.tvLokasi) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             TextInputEditText tvLokasi;
     @BindView(R.id.imgPhoto) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
-    ImageView imgPhoto;
+            ImageView imgPhoto;
     @BindView(R.id.btnChoose) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
-    Button btnChoose;
-    @BindView(R.id.btm_nav)
-    BottomNavigationView btmNavView2;
+            Button btnChoose;
     private StorageReference refPhotoProfile;
     private Uri photoUrl;
     private ProgressDialog pbDialog;
+    private BottomNavigationView btmNavView2;
 
     AddPhotoActivity add;
 
@@ -164,8 +170,11 @@ public class AddPhotoActivity extends AppCompatActivity implements View.OnClickL
                                 key,
                                 photoUrl.toString(),
                                 tvTitle.getText().toString(),
+                                spinnerGenres.getSelectedItem().toString(),
                                 tvPost.getText().toString(),
                                 tvLokasi.getText().toString(),
+                                tvHarga.getText().toString(),
+                                tvPhone.getText().toString(),
                                 Constant.currentUser.getEmail().split("@")[0],
                                 Constant.currentUser.getEmail()));
                         pbDialog.dismiss();

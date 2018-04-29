@@ -12,7 +12,7 @@
     android:id="@+id/bt_share_img"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Share Image"
+    android:text="Delete"
     />
 
     <Button
