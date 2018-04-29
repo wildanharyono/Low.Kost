@@ -1,81 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="10dp"
+    android:gravity="center"
+    >
 
-    <TextView
-        android:id="@+id/textViewName"
+    <Button
+        android:layout_margin="5dp"
+        android:id="@+id/bt_edit_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Data"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="25dp" />
+        />
 
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="352dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter new Name"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="62dp" />
-
-    <!--<Spinner-->
-        <!--android:id="@+id/spinnerGenres"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:entries="@array/gendres" />-->
-
-    <EditText
-        android:id="@+id/editTextFasilitas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Fasilitas"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/editTextLokasi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Lokasi"
-        android:inputType="textPersonName" />
-
-   <!---->
-
-    <!--<EditText-->
-        <!--android:id="@+id/editTextHarga"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:ems="10"-->
-        <!--android:hint="Harga"-->
-        <!--android:inputType="textPersonName" />-->
-    <LinearLayout
+    <Button
+        android:layout_margin="5dp"
+        android:id="@+id/bt_delete_data"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/buttonUpdate"
-            android:layout_width="186dp"
-            android:layout_height="wrap_content"
-            android:text="Update"
-            tools:layout_editor_absoluteX="46dp"
-            tools:layout_editor_absoluteY="127dp" />
-
-        <Button
-            android:id="@+id/buttonDelete"
-            android:layout_width="164dp"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            tools:layout_editor_absoluteX="46dp"
-            tools:layout_editor_absoluteY="127dp" />
-
-    </LinearLayout>
-
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        />
 </LinearLayout>

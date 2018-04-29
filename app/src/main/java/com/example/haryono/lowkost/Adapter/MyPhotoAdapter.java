@@ -5,6 +5,8 @@ package com.example.haryono.lowkost.Adapter;
  */
 
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -13,13 +15,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.haryono.lowkost.Activity.AddPhotoActivity;
 import com.example.haryono.lowkost.Activity.PhotoDetailEditActivity;
+import com.example.haryono.lowkost.Fragment.MyPhotoFragment;
 import com.example.haryono.lowkost.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -35,6 +42,8 @@ public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.MyViewHo
     //deklarasi variable
     private List<PhotoModel> photoList;
     private Context context;
+    FirebaseDataListener listener;
+    private DatabaseReference database;
 
     //class viewholder untuk declare dan inisialisasi views pada row yang digunakan
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -57,6 +66,7 @@ public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.MyViewHo
     public MyPhotoAdapter(List<PhotoModel> photoList, Context context) {
         this.photoList = photoList;
         this.context = context;
+//        this.listener = (MyPhotoFragment)context;
     }
 
     //create ke layout row yang dipilih
@@ -72,7 +82,7 @@ public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.MyViewHo
 
     //binding antara data yang didapatkan ke dalam views
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final PhotoModel photo = photoList.get(position);
         holder.tvDesc.setText(photo.getDesc());
         holder.tvName.setText(photo.getName());
@@ -112,6 +122,46 @@ public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.MyViewHo
                 context.startActivity(in);
             }
         });
+
+        holder.cvPhoto.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                /**
+                 *  Kodingan untuk tutorial Selanjutnya :p Delete dan update data
+                 */
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.update_dialog);
+                dialog.setTitle("Pilih Aksi");
+                dialog.show();
+
+//                Button editButton = (Button) dialog.findViewById(R.id.bt_edit_data);
+                Button delButton = (Button) dialog.findViewById(R.id.bt_delete_data);
+
+                //apabila tombol edit diklik
+//                editButton.setOnClickListener(
+//                        new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                dialog.dismiss();
+//                                context.startActivity(AddPhotoActivity.getActIntent((Activity) context).putExtra("data", photoList.get(position)));
+//                            }
+//                        }
+//                );
+//
+                //apabila tombol delete diklik
+                delButton.setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                                listener.onDeleteData(photoList.get(position), position);
+                            }
+                        }
+                );
+                return true;
+            }
+        });
+//        holder.tvTitle.setText((CharSequence) photos);
     }
 
     //count data
@@ -119,4 +169,10 @@ public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.MyViewHo
     public int getItemCount() {
         return photoList.size();
     }
+
+    public interface FirebaseDataListener{
+        void onDeleteData(PhotoModel PhotoModel, int position);
+    }
+
+
 }

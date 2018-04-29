@@ -4,6 +4,8 @@ package com.example.haryono.lowkost.Fragment;
  * Created by haryono on 4/2/2018.
  */
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,10 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.haryono.lowkost.Model.PhotoModel;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.ogaclejapan.smarttablayout.utils.v4.Bundler;
 
@@ -33,6 +38,7 @@ public class MyPhotoFragment extends Fragment {
     private static final String KEY_PARAM = "key_param";
     private ArrayList<PhotoModel> photoList;
     private MyPhotoAdapter mAdapter;
+    private DatabaseReference database;
 
     @BindView(R.id.rvFoto) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             RecyclerView rvFoto;
@@ -116,5 +122,23 @@ public class MyPhotoFragment extends Fragment {
             });
         } else {
         }
+    }
+
+    public static Intent getActIntent(Activity activity) {
+        return new Intent(activity, MyPhotoFragment.class);
+    }
+
+    public void onDeleteData(PhotoModel PhotoModel, final int position) {
+
+        if (database != null) {
+            database.child("photo").child(PhotoModel.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener <Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+//                    Toast.makeText(MyPhotoFragment.this,"success delete", Toast.LENGTH_LONG).show();
+                }
+            });
+
+        }
+
     }
 }

@@ -46,22 +46,6 @@ public class ChatActivity extends AppCompatActivity {
     ImageView emojiButton,submitButton;
     EmojIconActions emojIconActions;
 
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if(item.getItemId() == R.id.menu_sign_out)
-//        {
-//            AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                @Override
-//                public void onComplete(@NonNull Task<Void> task) {
-//                    Snackbar.make(activity_main,"You have been signed out.", Snackbar.LENGTH_SHORT).show();
-//                    finish();
-//                }
-//            });
-//        }
-//        return true;
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu,menu);
@@ -124,8 +108,6 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-
-
     private void displayChatMessage() {
 
         ListView listOfMessage = (ListView)findViewById(R.id.list_of_message);
@@ -149,65 +131,3 @@ public class ChatActivity extends AppCompatActivity {
         listOfMessage.setAdapter(adapter);
     }
 }
-//    private EditText editMessage;
-//    private DatabaseReference mDatabase;
-//    private RecyclerView mMessageList;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_chat);
-//
-//        editMessage = (EditText) findViewById(R.id.editMessage);
-//        mDatabase = FirebaseDatabase.getInstance().getReference().child("Messages");
-//        mMessageList = (RecyclerView)findViewById(R.id.messageRec);
-//        mMessageList.setHasFixedSize(true);
-//        LinearLayoutManager linerLayoutManager = new LinearLayoutManager(this);
-//        linerLayoutManager.setStackFromEnd(true);
-//        mMessageList.setLayoutManager(linerLayoutManager);
-//    }
-//
-//    public void sendButtonClicked(View view){
-//        final String messageValue= editMessage.getText().toString().trim();
-//        if (!TextUtils.isEmpty(messageValue)){
-//            final DatabaseReference newPost = mDatabase.push();
-//            newPost.child("content").setValue(messageValue);
-//        }
-//    }
-//
-//
-//
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        FirebaseRecyclerAdapter<Message,MessageViewHolder> FBRA = new FirebaseRecyclerAdapter<Message, MessageViewHolder>(
-//
-//                Message.class, R.layout.singlemessagelayout,MessageViewHolder.class,mDatabase
-//        ){
-//            @Override
-//            protected void populateViewHolder (MessageViewHolder viewHolder, Message model, int position){
-//                viewHolder.setContent(model.getContent());
-//            }
-//        };
-//        mMessageList.setAdapter(FBRA);
-//    }
-//
-//    public static class MessageViewHolder extends RecyclerView.ViewHolder{
-//
-//        View mView;
-//        public MessageViewHolder(View itemView) {
-//            super(itemView);
-//            mView = itemView;
-//        }
-//
-//        public void setContent(String content){
-//            TextView message_content = (TextView) mView.findViewById(R.id.messageText);
-//            message_content.setText(content);
-//        }
-//        public void setUsername(String email){
-//            TextView message_content = (TextView) mView.findViewById(R.id.usernameText);
-//            message_content.setText(email);
-//        }
-//    }
-//}
