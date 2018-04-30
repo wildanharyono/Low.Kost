@@ -119,15 +119,14 @@
 
 
                             <Button
-                                android:id="@+id/btnShare"
+                                android:id="@+id/btnLoc"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_below="@id/tvLokasi"
                                 android:layout_toRightOf="@id/btnCall"
                                 android:layout_marginTop="45dp"
                                 android:layout_marginLeft="15dp"
-                                android:background="@drawable/ic_share_black_24dp"
-                                android:onClick="setBtnEdit" />
+                                android:background="@drawable/ic_location_on_black_24dp" />
 
                         </RelativeLayout>
                     </LinearLayout>

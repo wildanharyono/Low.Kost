@@ -79,6 +79,7 @@ public class PhotoDetailActivity extends AppCompatActivity {
         loadIntent();
 
         Button imageCall = findViewById(R.id.btnCall);
+        Button loc = findViewById(R.id.btnLoc);
 
         imageCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +87,14 @@ public class PhotoDetailActivity extends AppCompatActivity {
                 makePhoneCall();
             }
         });
+
+        loc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLocation(view);
+            }
+        });
+
     }
 
     PhotoModel photo;
@@ -158,6 +167,24 @@ public class PhotoDetailActivity extends AppCompatActivity {
 
         etKomentar.setText("");
     }
+
+    public void openLocation(View view) {
+        // Get the string indicating a location.  Input is not validated; it is
+        // passed to the location handler intact.
+        String loc = photo.getLokasi().toString();
+
+        // Parse the location and create the intent.
+        Uri addressUri = Uri.parse("geo:0,0?q=" + loc);
+        Intent intent = new Intent(Intent.ACTION_VIEW, addressUri);
+
+        // Find an activity to handle the intent, and start that activity.
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d("ImplicitIntents", "Can't handle this intent!");
+        }
+    }
+
 
     //handler jika back button di klik
     @Override

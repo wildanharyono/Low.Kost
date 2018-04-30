@@ -38,8 +38,8 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
     //deklarasi variable
     private List<PhotoModel> photoList;
     private Context context;
-    @BindView(R.id.btnShare)
-    Button btnSyer;
+//    @BindView(R.id.btnShare)
+//    Button btnSyer;
 
     //class viewholder untuk declare dan inisialisasi views pada row yang digunakan
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -55,7 +55,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
             tvTitle = (TextView) view.findViewById(R.id.tvTitle);
             tvComment = (TextView) view.findViewById(R.id.tvComment);
             cvPhoto = (CardView) view.findViewById(R.id.cvPhoto);
-            btnSyer = (Button) view.findViewById(R.id.btnShare);
+//            btnSyer = (Button) view.findViewById(R.id.btnShare);
         }
     }
 
