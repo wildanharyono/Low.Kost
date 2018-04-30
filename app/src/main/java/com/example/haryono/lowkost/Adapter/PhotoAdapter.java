@@ -136,11 +136,15 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         intent.setType("text/plain"+"image/*");
-                        String title = "Nama kos: ";
+                        String infokos = "[Info Kost"+ " " + poto.getKostName()+"]";
+//                        String title = "Nama kos: ";
+                        String jenis = "Jenis kos: ";
                         String body = "Status: ";
+                        String harga = "Harga: Rp ";
                         Uri uri = Uri.parse(poto.getImage_url());
-                        intent.putExtra(Intent.EXTRA_TEXT, title + poto.getKostName() + "\n" +
-                                body + poto.getDesc());
+                        intent.putExtra(Intent.EXTRA_TEXT, infokos + "\n" +
+                                jenis + poto.getKostGenre() + "\n" + body + poto.getDesc() + "\n" +
+                                harga + poto.getKostPrice() + ",-" );
                         intent.putExtra(Intent.EXTRA_STREAM, uri + poto.getImage_url() );
                         context.startActivity(Intent.createChooser(intent, "Share Using"));
                         dialog.dismiss();
