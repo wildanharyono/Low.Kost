@@ -59,6 +59,8 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
         }
     }
 
+
+
     //konstruktor untuk menerima data yang dikirimkan dari activity ke adapter
     public PhotoAdapter(List<PhotoModel> photoList, Context context) {
         this.photoList = photoList;
@@ -133,55 +135,55 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
                         Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        intent.setType("image/*");
+                        intent.setType("text/plain"+"image/*");
                         String title = "Nama kos: ";
                         String body = "Status: ";
                         Uri uri = Uri.parse(poto.getImage_url());
                         intent.putExtra(Intent.EXTRA_TEXT, title + poto.getKostName() + "\n" +
                                 body + poto.getDesc());
-                        intent.putExtra(Intent.EXTRA_STREAM, uri + poto.getImage_url());
+                        intent.putExtra(Intent.EXTRA_STREAM, uri + poto.getImage_url() );
                         context.startActivity(Intent.createChooser(intent, "Share Using"));
                         dialog.dismiss();
                     }
                 });
 //                return true;
 
-                Button shareImg = (Button) dialog.findViewById(R.id.bt_share_img);
-                shareImg.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        PhotoModel poto = photoList.get(position);
-                        Intent intent = new Intent(Intent.ACTION_SEND);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                        intent.setType("image/*");
-                        intent.putExtra(Intent.EXTRA_STREAM, poto.getImage_url().hashCode());
-                        context.startActivity(Intent.createChooser(intent, "Share Using"));
-                        dialog.dismiss();
-
-                    }
-                });
+//                Button shareImg = (Button) dialog.findViewById(R.id.bt_share_img);
+//                shareImg.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        PhotoModel poto = photoList.get(position);
+//                        Intent intent = new Intent(Intent.ACTION_SEND);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+//                        intent.setType("image/*");
+//                        intent.putExtra(Intent.EXTRA_STREAM, poto.getImage_url().hashCode());
+//                        context.startActivity(Intent.createChooser(intent, "Share Using"));
+//                        dialog.dismiss();
+//
+//                    }
+//                });
                 return true;
 
             }
         });
 
-        btnSyer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PhotoModel poto = photoList.get(position);
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                intent.setType("image/*");
-                String title = "Nama kos: ";
-                String body = "Status: ";
-                Uri uri = Uri.parse(poto.getImage_url());
-                intent.putExtra(Intent.EXTRA_TEXT, title + poto.getKostName() + "\n" +
-                        body + poto.getDesc());
-                intent.putExtra(Intent.EXTRA_STREAM, uri + poto.getImage_url());
-                context.startActivity(Intent.createChooser(intent, "Share Using"));
-            }
-        });
+//        btnSyer.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                PhotoModel poto = photoList.get(position);
+//                Intent intent = new Intent(Intent.ACTION_SEND);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+//                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                intent.setType("image/*");
+//                String title = "Nama kos: ";
+//                String body = "Status: ";
+//                Uri uri = Uri.parse(poto.getImage_url());
+//                intent.putExtra(Intent.EXTRA_TEXT, title + poto.getKostName() + "\n" +
+//                        body + poto.getDesc());
+//                intent.putExtra(Intent.EXTRA_STREAM, uri + poto.getImage_url());
+//                context.startActivity(Intent.createChooser(intent, "Share Using"));
+//            }
+//        });
 
 
     }
