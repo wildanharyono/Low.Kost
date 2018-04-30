@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.haryono.lowkost.Config.Constant;
@@ -46,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);  //Binding ButterKnife pada activity
         setTitle("Lowkost");
 
+        //untuk membuat splash screen fullscreen tanpa tool bar.
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         btnChet = (FloatingActionButton) findViewById(R.id.btnChat);
         btnChet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentStatePagerItemAdapter adapter = new FragmentStatePagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add(FragmentPagerItem.of("TERBARU", PhotoFragment.class, PhotoFragment.arguments("terbaru")))
-                .add(FragmentPagerItem.of("FOTO SAYA", PhotoFragment.class, PhotoFragment.arguments("fotosaya")))
+                .add(FragmentPagerItem.of("KOS SAYA", PhotoFragment.class, PhotoFragment.arguments("fotosaya")))
                 .create());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);

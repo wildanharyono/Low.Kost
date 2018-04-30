@@ -20,7 +20,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +45,9 @@ import butterknife.OnClick;
 
 public class PhotoDetailActivity extends AppCompatActivity {
     //Deklarasi View
+    private static final int REQUEST_CALL = 1;
+    private EditText mEditTextNumber;
+
     @BindView(R.id.imgEvent) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
             ImageView imgEvent;
     @BindView(R.id.tvDescription) //@BindView declare sekaligus inisialisasi view dengan menggunakan library ButterKnife
@@ -59,7 +64,6 @@ public class PhotoDetailActivity extends AppCompatActivity {
             android.support.v7.widget.Toolbar toolbar;
     private ArrayList<CommentModel> commentList; //arraylist untuk menyimpan hasil load komentar
     private CommentAdapter mAdapter;
-    private static final int REQUEST_CALL = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,10 @@ public class PhotoDetailActivity extends AppCompatActivity {
         displayHomeAsUpEnabled();
         commentList = new ArrayList<>();
 
+        //untuk membuat splash screen fullscreen tanpa tool bar.
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         //setting layout dari recyclerview dan adapter
         LinearLayoutManager llManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvKomentar.setLayoutManager(llManager);
@@ -77,33 +85,16 @@ public class PhotoDetailActivity extends AppCompatActivity {
         rvKomentar.setAdapter(mAdapter);
 
         loadIntent();
-
-        Button imageCall = findViewById(R.id.btnCall);
-        Button loc = findViewById(R.id.btnLoc);
-
-        imageCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makePhoneCall();
-            }
-        });
-
-        loc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openLocation(view);
-            }
-        });
-
     }
 
     PhotoModel photo;
 
-    private void loadIntent() { //mengambil value yang dipassing dari selected photo di PhotoAdapter
+    private void loadIntent() { //mengambil value yang dipassing dari selected photo di MyPhotoAdapter
         if (getIntent().getExtras() != null) {
             photo = (PhotoModel) getIntent().getSerializableExtra("photoData"); //ambil model yg dipassing
             Picasso.get().load(photo.getImage_url()).into(imgEvent); //load gambar menggukanan picasso
-            tvDescription.setText("Nama Kost         :  "+photo.getKostName()+
+            tvDescription.setText(
+                         "Nama Kost         :  "+photo.getKostName()+
                     "\n"+"Jenis Kost          :  "+photo.getKostGenre() +
                     "\n"+"Fasilitas Kost     :  "+photo.getDesc() +
                     "\n"+"Harga Kost         :  Rp "+photo.getKostPrice() +
@@ -139,6 +130,16 @@ public class PhotoDetailActivity extends AppCompatActivity {
                         //showProgress(false);
                     }
                 });
+
+//        mEditTextNumber = findViewById(R.id.edit_text_number);
+        Button imageCall = findViewById(R.id.btnCall);
+
+        imageCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makePhoneCall();
+            }
+        });
     }
 
     //menampilkan tombol back button diatas kiri
@@ -167,24 +168,6 @@ public class PhotoDetailActivity extends AppCompatActivity {
 
         etKomentar.setText("");
     }
-
-    public void openLocation(View view) {
-        // Get the string indicating a location.  Input is not validated; it is
-        // passed to the location handler intact.
-        String loc = photo.getLokasi().toString();
-
-        // Parse the location and create the intent.
-        Uri addressUri = Uri.parse("geo:0,0?q=" + loc);
-        Intent intent = new Intent(Intent.ACTION_VIEW, addressUri);
-
-        // Find an activity to handle the intent, and start that activity.
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        } else {
-            Log.d("ImplicitIntents", "Can't handle this intent!");
-        }
-    }
-
 
     //handler jika back button di klik
     @Override
@@ -223,6 +206,23 @@ public class PhotoDetailActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    public void openLocation(View view) {
+        // Get the string indicating a location.  Input is not validated; it is
+        // passed to the location handler intact.
+        String loc = photo.getLokasi().toString();
+
+        // Parse the location and create the intent.
+        Uri addressUri = Uri.parse("geo:0,0?q=" + loc);
+        Intent intent = new Intent(Intent.ACTION_VIEW, addressUri);
+
+        // Find an activity to handle the intent, and start that activity.
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d("ImplicitIntents", "Can't handle this intent!");
         }
     }
 }

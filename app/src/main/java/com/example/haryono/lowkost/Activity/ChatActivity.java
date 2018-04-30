@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -80,6 +81,10 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         activity_chat = (RelativeLayout)findViewById(R.id.activity_main);
+
+        //untuk membuat splash screen fullscreen tanpa tool bar.
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //Add Emoji
         emojiButton = (ImageView)findViewById(R.id.emoji_button);

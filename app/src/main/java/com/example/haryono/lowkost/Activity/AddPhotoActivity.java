@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -118,6 +119,10 @@ public class AddPhotoActivity extends AppCompatActivity implements View.OnClickL
         btnChoose.setOnClickListener(this);
         btnPost.setOnClickListener(this);
         pbDialog = new ProgressDialog(this);
+
+        //untuk membuat splash screen fullscreen tanpa tool bar.
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         txtCoordinates = (TextView) findViewById(R.id.tvLokasi);
         btnGetCoordinates = (Button) findViewById(R.id.btnLokasi);

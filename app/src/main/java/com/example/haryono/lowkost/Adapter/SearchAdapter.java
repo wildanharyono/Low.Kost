@@ -1,8 +1,8 @@
 package com.example.haryono.lowkost.Adapter;
 
 
+
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.haryono.lowkost.Activity.PhotoDetailActivity;
 import com.example.haryono.lowkost.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -23,26 +22,37 @@ import java.util.ArrayList;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
     Context context;
-    ArrayList<String> fullNameList;
-    ArrayList<String> userNameList;
+    ArrayList<String> kostNameList;
+    ArrayList<String> kostGenreList;
+    ArrayList<String> userList;
+    ArrayList<String> image_url;
+    ArrayList<String> kostPriceList;
+    ArrayList<String> kostPhoneList;
 //    ArrayList<String> profilePicList;
 
     class SearchViewHolder extends RecyclerView.ViewHolder {
         //   ImageView profileImage;
-        TextView full_name, user_name;
+        TextView kostName, user_name, username;
+        ImageView profileImage;
+        public ImageView imgPhoto;
 
         public SearchViewHolder(View itemView) {
             super(itemView);
-//            profileImage = (ImageView) itemView.findViewById(R.id.imgPhoto);
-            full_name = (TextView) itemView.findViewById(R.id.tvTitle);
+            imgPhoto = (ImageView) itemView.findViewById(R.id.imgPhoto);
+            kostName = (TextView) itemView.findViewById(R.id.tvTitle);
             user_name = (TextView) itemView.findViewById(R.id.tvDeskripsi);
+            username = (TextView) itemView.findViewById(R.id.tvNama);
         }
     }
 
-    public SearchAdapter(Context context, ArrayList<String> fullNameList, ArrayList<String> userNameList) {
+    public SearchAdapter(Context context, ArrayList<String> kostNameList, ArrayList<String> kostGenreList, ArrayList<String> userList, ArrayList<String> image_url, ArrayList<String> kostPriceList, ArrayList<String> kostPhoneList) {
         this.context = context;
-        this.fullNameList = fullNameList;
-        this.userNameList = userNameList;
+        this.kostNameList = kostNameList;
+        this.kostGenreList = kostGenreList;
+        this.userList = userList;
+        this.image_url = image_url;
+        this.kostPriceList = kostPriceList;
+        this.kostPhoneList = kostPhoneList;
 //        this.profilePicList = profilePicList;
     }
 
@@ -54,11 +64,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
-        holder.full_name.setText(fullNameList.get(position));
-        holder.user_name.setText(userNameList.get(position));
-//        Glide.with(context).load(profilePicList.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
-
-        holder.full_name.setOnClickListener(new View.OnClickListener() {
+        holder.kostName.setText(kostNameList.get(position));
+        holder.user_name.setText(kostGenreList.get(position));
+        holder.username.setText(userList.get(position));
+//         Glide.with(context).load(image_url.get(position)).asBitmap().placeholder(R.mipmap.ic_launcher_round).into(holder.profileImage);
+        Picasso.get().load(image_url.get(position)).into(holder.imgPhoto); //load gambar dengan picasso
+        holder.kostName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Full Name Clicked", Toast.LENGTH_SHORT).show();
@@ -68,6 +79,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public int getItemCount() {
-        return fullNameList.size();
+        return kostNameList.size();
     }
 }

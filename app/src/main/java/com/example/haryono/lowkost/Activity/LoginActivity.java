@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ButterKnife.bind(this); //Binding ButterKnife pada activity
         pbDialog = new ProgressDialog(this);
         tvDaftar.setOnClickListener(this);
+
+        //untuk membuat splash screen fullscreen tanpa tool bar.
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @OnClick(R.id.email_sign_in_button)

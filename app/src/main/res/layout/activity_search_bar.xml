@@ -20,15 +20,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/btm_nav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:itemBackground="@android:color/holo_green_dark"
-            app:itemIconTint="@drawable/state_list"
-            app:itemTextColor="@drawable/state_list"
-            app:menu="@menu/menu_bottom_nav_view" />
+        <!--<android.support.design.widget.BottomNavigationView-->
+            <!--android:id="@+id/btm_nav"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--app:itemBackground="@android:color/holo_green_dark"-->
+            <!--app:itemIconTint="@drawable/state_list"-->
+            <!--app:itemTextColor="@drawable/state_list"-->
+            <!--app:menu="@menu/menu_bottom_nav_view" />-->
 
     </RelativeLayout>
 
