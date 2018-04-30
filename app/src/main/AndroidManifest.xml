@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.SplashScreen">
+        <activity android:name=".Activity.SplashScreen"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,14 +33,16 @@
         <activity android:name=".Activity.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.AddPhotoActivity"
-            android:label="Add"></activity>
+            android:label="Add"
+            android:parentActivityName=".Activity.MainActivity"></activity>
         <activity android:name=".Activity.PhotoDetailActivity"
             android:theme="@style/AppTheme.NoActionBar.Detail"
             android:label="Detail"></activity>
         <activity android:name=".Activity.SearchBarActivity"
             android:label="Search"></activity>
         <activity android:name=".Activity.ChatActivity"
-            android:label="Chat"></activity>
+            android:label="Chat"
+            android:parentActivityName=".Activity.MainActivity"></activity>
 
     </application>
 

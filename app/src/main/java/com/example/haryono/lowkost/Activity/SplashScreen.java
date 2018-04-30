@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.haryono.lowkost.R;
@@ -16,6 +17,11 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        //untuk membuat splash screen fullscreen tanpa tool bar.
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 //        Toast.makeText(this,"KELOMPOK 8",Toast.LENGTH_LONG).show();
         new Handler().postDelayed(new Runnable() { //inisiasi handler
             @Override
