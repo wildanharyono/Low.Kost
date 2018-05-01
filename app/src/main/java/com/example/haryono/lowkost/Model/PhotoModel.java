@@ -6,7 +6,6 @@ package com.example.haryono.lowkost.Model;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 //Class model untuk Menerima output dari json Photo di firebase
 //implements Serializable berfungsi supaya model dapat di passing menggunakan putExtra
