@@ -18,19 +18,33 @@
 
 
         <TextView
+            android:id="@+id/textViewUserEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textViewUserEmail"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:text="Input Data Kost"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Logout" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <EditText
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Enter Name"
+            android:hint="Name"
             android:inputType="textPersonName" />
 
         <Spinner
@@ -39,23 +53,40 @@
             android:layout_height="wrap_content"
             android:entries="@array/gendres" />
 
-        <Button
-            android:id="@+id/buttonAddArtist"
+        <EditText
+            android:id="@+id/editTextLokasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:ems="10"
+            android:hint="Lokasi"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTextFasilitas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Fasilitas"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTextHarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Harga"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/buttonAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add" />
 
         <ListView
+            android:id="@+id/listViewKost"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/listViewArtists" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logout"
-            android:id="@+id/buttonLogout"
-            android:layout_gravity="center_horizontal" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </RelativeLayout>

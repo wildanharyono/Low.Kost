@@ -6,13 +6,13 @@
     android:orientation="horizontal"
     android:padding="10dp">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImage"
-        android:layout_width="67dp"
-        android:layout_height="62dp"
-        android:fitsSystemWindows="true"
-        android:scaleType="centerCrop"
-        app:layout_collapseMode="parallax" />
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:padding="2dp"
+        app:civ_border_color="@color/colorPrimaryDark"
+        app:civ_border_width="1dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
